@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Plug</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+}
+
+header{
+    background:black;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#ffd700;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    height:80vh;
+    background:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:20px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#ffd700;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+.products{
+    padding:50px;
+}
+
+.products h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1a1a1a;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    color:#ffd700;
+    font-size:20px;
+    margin-top:10px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Luxury Plug</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Authentic Designer Fashion</h1>
+        <p>Spider Hoodies • Sneakers • Designer Clothing</p>
+        <a href="#shop" class="btn">Shop Now</a>
+    </div>
+</section>
+
+<section class="products" id="shop">
+    <h2>Featured Products</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518" alt="">
+            <div class="card-content">
+                <h3>Designer Hoodie</h3>
+                <div class="price">$220</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
+            <div class="card-content">
+                <h3>Premium Sneakers</h3>
+                <div class="price">$350</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="">
+            <div class="card-content">
+                <h3>Luxury Designer Tee</h3>
+                <div class="price">$120</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Luxury Plug. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
