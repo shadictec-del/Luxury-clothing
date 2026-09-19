@@ -3,111 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Plug</title>
+
+<title>Luxury Clothing | Premium Fashion</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-body{
-    background:#111;
-    color:white;
+body {
+background-color: #ffffff;
+color: #111111;
+font-family: Arial, sans-serif;
 }
 
-header{
-    background:black;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+header {
+background-color: #000000;
+color: white;
+padding: 25px;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#ffd700;
+header h1 {
+letter-spacing: 3px;
+font-size: 24px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
+nav a {
+color: white;
+text-decoration: none;
+margin-left: 20px;
 }
 
-.hero{
-    height:80vh;
-    background:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234') center/cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+.hero {
+background: #111111;
+color: white;
+text-align: center;
+padding: 100px 20px;
 }
 
-.hero h1{
-    font-size:50px;
+.hero h2 {
+font-size: 48px;
+margin-bottom: 20px;
 }
 
-.hero p{
-    margin-top:10px;
-    font-size:20px;
+.hero p {
+font-size: 18px;
+margin-bottom: 30px;
 }
 
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#ffd700;
-    color:black;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:5px;
+.hero button {
+padding: 15px 35px;
+background: white;
+color: black;
+border: none;
+cursor: pointer;
+font-weight: bold;
 }
 
-.products{
-    padding:50px;
+.products {
+padding: 60px 30px;
+text-align: center;
 }
 
-.products h2{
-    text-align:center;
-    margin-bottom:30px;
+.products h2 {
+font-size: 32px;
+margin-bottom: 40px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.product-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 25px;
 }
 
-.card{
-    background:#1a1a1a;
-    border-radius:10px;
-    overflow:hidden;
+.product {
+border: 1px solid #eeeeee;
+padding: 20px;
 }
 
-.card img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
+.product img {
+width: 100%;
+height: 250px;
+object-fit: cover;
+background: #f3f3f3;
 }
 
-.card-content{
-    padding:15px;
+.product h3 {
+margin: 15px 0 10px;
 }
 
-.price{
-    color:#ffd700;
-    font-size:20px;
-    margin-top:10px;
+.product button {
+margin-top: 15px;
+padding: 12px 20px;
+background: black;
+color: white;
+border: none;
+cursor: pointer;
 }
 
-footer{
-    text-align:center;
-    padding:20px;
-    background:black;
+footer {
+background: black;
+color: white;
+text-align: center;
+padding: 30px;
+margin-top: 50px;
 }
 </style>
 </head>
@@ -115,57 +119,85 @@ footer{
 <body>
 
 <header>
-    <div class="logo">Luxury Plug</div>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Contact</a>
-    </nav>
+<h1>LUXURY</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
 <section class="hero">
-    <div>
-        <h1>Authentic Designer Fashion</h1>
-        <p>Spider Hoodies • Sneakers • Designer Clothing</p>
-        <a href="#shop" class="btn">Shop Now</a>
-    </div>
+<h2>Elevate Your Style</h2>
+<p>Premium Fashion. Timeless Streetwear.</p>
+
+<button onclick="document.getElementById('shop').scrollIntoView()">
+SHOP NOW
+</button>
 </section>
 
 <section class="products" id="shop">
-    <h2>Featured Products</h2>
+<h2>Featured Collection</h2>
 
-    <div class="grid">
+<div class="product-grid">
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518" alt="">
-            <div class="card-content">
-                <h3>Designer Hoodie</h3>
-                <div class="price">$220</div>
-            </div>
-        </div>
+<div class="product">
+<img src="https://placehold.co/400x400?text=Product+1" alt="Premium Hoodie">
+<h3>Premium Hoodie</h3>
+<p>$65.00</p>
+<button onclick="addToCart('Premium Hoodie', 65)">
+Add to Cart
+</button>
+</div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
-            <div class="card-content">
-                <h3>Premium Sneakers</h3>
-                <div class="price">$350</div>
-            </div>
-        </div>
+<div class="product">
+<img src="https://placehold.co/400x400?text=Product+2" alt="Luxury T-Shirt">
+<h3>Luxury T-Shirt</h3>
+<p>$35.00</p>
+<button onclick="addToCart('Luxury T-Shirt', 35)">
+Add to Cart
+</button>
+</div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="">
-            <div class="card-content">
-                <h3>Luxury Designer Tee</h3>
-                <div class="price">$120</div>
-            </div>
-        </div>
+<div class="product">
+<img src="https://placehold.co/400x400?text=Product+3" alt="Streetwear Set">
+<h3>Streetwear Set</h3>
+<p>$90.00</p>
+<button onclick="addToCart('Streetwear Set', 90)">
+Add to Cart
+</button>
+</div>
 
-    </div>
+</div>
 </section>
 
-<footer>
-    <p>© 2026 Luxury Plug. All Rights Reserved.</p>
+<section class="products">
+<h2>Your Shopping Cart</h2>
+<div id="cart">Your cart is empty.</div>
+<h3 id="total">Total: $0.00</h3>
+</section>
+
+<footer id="contact">
+<p>© 2026 Luxury Clothing. All Rights Reserved.</p>
+<p>Premium Fashion. Delivered to You.</p>
 </footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+cart.push({ name, price });
+total += price;
+
+document.getElementById("cart").innerHTML =
+cart.map(item => item.name + " - $" + item.price.toFixed(2)).join("<br>");
+
+document.getElementById("total").innerText =
+"Total: $" + total.toFixed(2);
+}
+</script>
 
 </body>
 </html>
