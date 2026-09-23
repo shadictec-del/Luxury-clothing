@@ -85,7 +85,7 @@ margin-bottom: 35px;
 
 .product-grid {
 display: grid;
-grid-template-columns: repeat( auto-fit, minmax(220px, 1fr) );
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 gap: 25px;
 max-width: 1200px;
 margin: auto;
@@ -96,9 +96,10 @@ border: 1px solid #eeeeee;
 padding: 15px;
 background: white;
 text-align: left;
+min-width: 0;
 }
 
-/* All product images use the same size */
+/* PRODUCT IMAGE GALLERY */
 
 .gallery {
 display: grid;
@@ -145,6 +146,8 @@ font-size: 15px;
 background: #333;
 }
 
+/* SHOPPING CART */
+
 .cart-section {
 background: #f7f7f7;
 }
@@ -177,6 +180,8 @@ font-size: 23px;
 margin-top: 20px;
 }
 
+/* FOOTER */
+
 footer {
 background: black;
 color: white;
@@ -184,6 +189,8 @@ text-align: center;
 padding: 30px 15px;
 line-height: 1.8;
 }
+
+/* MOBILE RESPONSIVE DESIGN */
 
 @media (max-width: 600px) {
 
@@ -224,12 +231,18 @@ padding: 9px;
 .product h3 {
 font-size: 16px;
 }
+
+.cart-item {
+flex-wrap: wrap;
+}
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -244,6 +257,7 @@ font-size: 16px;
 
 </header>
 
+<!-- HERO SECTION -->
 
 <section class="hero">
 
@@ -257,6 +271,7 @@ SHOP NOW
 
 </section>
 
+<!-- FEATURED PRODUCTS -->
 
 <section class="products" id="shop">
 
@@ -267,7 +282,6 @@ Explore the Reventa Markets Beanie Collection.
 </p>
 
 <div class="product-grid">
-
 
 <!-- WHITE BEANIE -->
 
@@ -299,7 +313,6 @@ Add to Cart
 
 </div>
 
-
 <!-- BLACK BEANIE -->
 
 <div class="product">
@@ -329,7 +342,6 @@ Add to Cart
 </button>
 
 </div>
-
 
 <!-- CAMO BEANIE -->
 
@@ -361,19 +373,17 @@ Add to Cart
 
 </div>
 
-
 <!-- BLACK AND WHITE BEANIE -->
 
 <div class="product">
 
 <div class="gallery">
 
-<img src="./chanel%20front.jpeg" alt="Black and White Beanie - Front" loading="lazy">
-
+<img src="./chanel%20front.jpeg"
 alt="Black and White Beanie - Front"
 loading="lazy">
 
-<img src="./chanel%20back.jpeg" alt="Black and White Beanie - Back" loading="lazy">
+<img src="./chanel%20back.jpeg"
 alt="Black and White Beanie - Back"
 loading="lazy">
 
@@ -393,11 +403,9 @@ Add to Cart
 
 </div>
 
-
 </div>
 
 </section>
-
 
 <!-- SHOPPING CART -->
 
@@ -413,6 +421,7 @@ Your cart is empty.
 
 </section>
 
+<!-- FOOTER -->
 
 <footer id="contact">
 
@@ -422,6 +431,7 @@ Your cart is empty.
 
 </footer>
 
+<!-- SHOPPING CART JAVASCRIPT -->
 
 <script>
 
@@ -437,14 +447,12 @@ price: price
 updateCart();
 }
 
-
 function removeFromCart(index) {
 
 cart.splice(index, 1);
 
 updateCart();
 }
-
 
 function updateCart() {
 
