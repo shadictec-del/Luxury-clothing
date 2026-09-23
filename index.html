@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
 <title>Reventa Markets | Premium Streetwear</title>
 
 <style>
+
 * {
 margin: 0;
 padding: 0;
@@ -14,15 +16,15 @@ box-sizing: border-box;
 }
 
 body {
-background: #fff;
-color: #111;
+background: #ffffff;
+color: #111111;
 font-family: Arial, sans-serif;
 }
 
 header {
-background: #000;
-color: #fff;
-padding: 22px 6%;
+background: #000000;
+color: white;
+padding: 22px 5%;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -31,52 +33,48 @@ gap: 15px;
 }
 
 header h1 {
-letter-spacing: 3px;
-font-size: 23px;
+font-size: 24px;
+letter-spacing: 2px;
 }
 
 nav a {
 color: white;
 text-decoration: none;
-margin-left: 20px;
+margin-left: 18px;
 }
 
 .hero {
-background: #111;
+background: #111111;
 color: white;
 text-align: center;
 padding: 90px 20px;
 }
 
 .hero h2 {
-font-size: clamp(32px, 6vw, 55px);
-margin-bottom: 18px;
+font-size: 44px;
+margin-bottom: 15px;
 }
 
 .hero p {
-font-size: 18px;
-margin-bottom: 30px;
-}
-
-button {
-cursor: pointer;
-border: none;
-font-weight: bold;
+margin-bottom: 25px;
 }
 
 .hero button {
 background: white;
 color: black;
-padding: 15px 35px;
+border: none;
+padding: 14px 30px;
+font-weight: bold;
+cursor: pointer;
 }
 
 .products {
-padding: 60px 6%;
+padding: 55px 5%;
 text-align: center;
 }
 
 .products h2 {
-font-size: 32px;
+font-size: 30px;
 margin-bottom: 15px;
 }
 
@@ -87,41 +85,47 @@ margin-bottom: 35px;
 
 .product-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+grid-template-columns: repeat( auto-fit, minmax(220px, 1fr) );
 gap: 25px;
+max-width: 1200px;
+margin: auto;
 }
 
 .product {
-border: 1px solid #eee;
+border: 1px solid #eeeeee;
 padding: 15px;
-text-align: left;
 background: white;
+text-align: left;
 }
+
+/* All product images use the same size */
 
 .gallery {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 6px;
+gap: 5px;
 }
 
 .gallery img {
 width: 100%;
-height: 220px;
+height: 150px;
 object-fit: contain;
 background: #f5f5f5;
+display: block;
 }
 
 .gallery img:first-child {
 grid-column: span 2;
-height: 280px;
+height: 230px;
 }
 
 .product h3 {
-margin: 18px 0 8px;
+margin-top: 18px;
 font-size: 20px;
 }
 
 .price {
+margin-top: 8px;
 font-size: 18px;
 font-weight: bold;
 }
@@ -129,9 +133,12 @@ font-weight: bold;
 .product button {
 background: black;
 color: white;
+border: none;
 padding: 13px;
 width: 100%;
 margin-top: 15px;
+cursor: pointer;
+font-size: 15px;
 }
 
 .product button:hover {
@@ -142,173 +149,225 @@ background: #333;
 background: #f7f7f7;
 }
 
+#cart {
+max-width: 700px;
+margin: 25px auto;
+text-align: left;
+}
+
 .cart-item {
 display: flex;
 justify-content: space-between;
 align-items: center;
-gap: 12px;
-padding: 15px 0;
+gap: 10px;
+padding: 12px;
 border-bottom: 1px solid #ddd;
-text-align: left;
-flex-wrap: wrap;
 }
 
-.cart-item button {
+.remove-button {
 background: #222;
 color: white;
-padding: 8px 12px;
+border: none;
+padding: 7px 10px;
+cursor: pointer;
 }
 
-.cart-total {
-margin-top: 25px;
-font-size: 24px;
-font-weight: bold;
-}
-
-.empty-cart {
-color: #666;
+#total {
+font-size: 23px;
 margin-top: 20px;
 }
 
 footer {
-background: #000;
-color: #fff;
+background: black;
+color: white;
 text-align: center;
-padding: 35px 15px;
+padding: 30px 15px;
 line-height: 1.8;
 }
 
 @media (max-width: 600px) {
+
 header {
 flex-direction: column;
+text-align: center;
 }
 
 nav a {
 margin: 0 8px;
 }
 
+.hero h2 {
+font-size: 32px;
+}
+
+.product-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 12px;
+}
+
 .products {
-padding: 40px 5%;
+padding: 35px 12px;
+}
+
+.gallery img {
+height: 100px;
+}
+
+.gallery img:first-child {
+height: 150px;
+}
+
+.product {
+padding: 9px;
+}
+
+.product h3 {
+font-size: 16px;
 }
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>REVENTA MARKETS</h1>
+
+<h1>Reventa_markets</h1>
 
 <nav>
 <a href="#">Home</a>
 <a href="#shop">Shop</a>
-<a href="#cart-section">Cart (<span id="cart-count">0</span>)</a>
+<a href="#cart-section">Cart</a>
 <a href="#contact">Contact</a>
 </nav>
+
 </header>
 
+
 <section class="hero">
+
 <h2>Elevate Your Style</h2>
+
 <p>Premium Fashion. Timeless Streetwear.</p>
 
 <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
 SHOP NOW
 </button>
+
 </section>
+
 
 <section class="products" id="shop">
 
 <h2>Featured Collection</h2>
+
 <p class="section-description">
 Explore the Reventa Markets Beanie Collection.
 </p>
 
 <div class="product-grid">
 
+
 <!-- WHITE BEANIE -->
 
 <div class="product">
+
 <div class="gallery">
-<img src="white%20supreme%20front.jpeg"
+
+<img src="./white%20supreme%20front.jpeg"
 alt="White Beanie - Front"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="white%20supreme%20back.jpeg"
+<img src="./white%20supreme%20back.jpeg"
 alt="White Beanie - Back"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="white%20supreme%20tag.jpeg"
+<img src="./white%20supreme%20tag.jpeg"
 alt="White Beanie - Tag"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
+
 </div>
 
 <h3>White Beanie</h3>
+
 <p class="price">$50.00</p>
 
 <button onclick="addToCart('White Beanie', 50)">
 Add to Cart
 </button>
+
 </div>
 
 
 <!-- BLACK BEANIE -->
 
 <div class="product">
+
 <div class="gallery">
-<img src="black%20suprem%20front.jpeg"
+
+<img src="./black%20suprem%20front.jpeg"
 alt="Black Beanie - Front"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="black%20supreme%20back.jpeg"
+<img src="./black%20supreme%20back.jpeg"
 alt="Black Beanie - Back"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="black%20suprem%20tag.jpeg"
+<img src="./black%20suprem%20tag.jpeg"
 alt="Black Beanie - Tag"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
+
 </div>
 
 <h3>Black Beanie</h3>
+
 <p class="price">$50.00</p>
 
 <button onclick="addToCart('Black Beanie', 50)">
 Add to Cart
 </button>
+
 </div>
 
 
 <!-- CAMO BEANIE -->
 
 <div class="product">
+
 <div class="gallery">
-<img src="camo%20supreme%20front.jpeg"
+
+<img src="./camo%20supreme%20front.jpeg"
 alt="Camo Beanie - Front"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="camo%20supreme%20back.jpeg"
+<img src="./camo%20supreme%20back.jpeg"
 alt="Camo Beanie - Back"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
 
-<img src="camo%20supreme%20tag.jpeg"
+<img src="./camo%20supreme%20tag.jpeg"
 alt="Camo Beanie - Tag"
-onerror="this.alt='Image unavailable'">
+loading="lazy">
+
 </div>
 
 <h3>Camo Beanie</h3>
+
 <p class="price">$50.00</p>
 
 <button onclick="addToCart('Camo Beanie', 50)">
 Add to Cart
 </button>
+
 </div>
 
 
 <!-- BLACK AND WHITE BEANIE -->
 
-<!-- BLACK AND WHITE BEANIE -->
 <div class="product">
 
 <div class="gallery">
+
 <img src="./chanel%20front.jpeg"
 alt="Black and White Beanie - Front"
 loading="lazy">
@@ -320,6 +379,7 @@ loading="lazy">
 <img src="./chanel%20tag.jpeg"
 alt="Black and White Beanie - Tag"
 loading="lazy">
+
 </div>
 
 <h3>Black and White Beanie</h3>
@@ -332,7 +392,9 @@ Add to Cart
 
 </div>
 
+
 </div>
+
 </section>
 
 
@@ -342,25 +404,21 @@ Add to Cart
 
 <h2>Your Shopping Cart</h2>
 
-<p class="section-description">
-Review your selected items below.
-</p>
-
 <div id="cart">
-<p class="empty-cart">Your cart is empty.</p>
+Your cart is empty.
 </div>
 
-<div class="cart-total" id="total">
-Total: $0.00
-</div>
+<h3 id="total">Total: $0.00</h3>
 
 </section>
 
 
 <footer id="contact">
-<h3>REVENTA MARKETS</h3>
-<p>Premium Fashion. Delivered to You.</p>
+
 <p>© 2026 Reventa Markets. All Rights Reserved.</p>
+
+<p>Premium Fashion. Delivered to You.</p>
+
 </footer>
 
 
@@ -370,85 +428,70 @@ let cart = [];
 
 function addToCart(name, price) {
 
-let existingItem = cart.find(item => item.name === name);
-
-if (existingItem) {
-existingItem.quantity++;
-} else {
 cart.push({
 name: name,
-price: price,
-quantity: 1
+price: price
 });
+
+updateCart();
 }
 
-renderCart();
+
+function removeFromCart(index) {
+
+cart.splice(index, 1);
+
+updateCart();
 }
 
-function removeFromCart(name) {
 
-let existingItem = cart.find(item => item.name === name);
+function updateCart() {
 
-if (existingItem) {
-existingItem.quantity--;
+const cartElement = document.getElementById("cart");
+const totalElement = document.getElementById("total");
 
-if (existingItem.quantity <= 0) {
-cart = cart.filter(item => item.name !== name);
-}
-}
-
-renderCart();
-}
-
-function renderCart() {
-
-const cartDiv = document.getElementById("cart");
+cartElement.innerHTML = "";
 
 let total = 0;
-let count = 0;
-
-cartDiv.innerHTML = "";
 
 if (cart.length === 0) {
 
-cartDiv.innerHTML =
-'<p class="empty-cart">Your cart is empty.</p>';
+cartElement.innerText = "Your cart is empty.";
 
-}
+} else {
 
-cart.forEach(item => {
+cart.forEach((item, index) => {
 
-total += item.price * item.quantity;
-count += item.quantity;
+total += item.price;
 
 const row = document.createElement("div");
 row.className = "cart-item";
 
-const description = document.createElement("span");
+const itemText = document.createElement("span");
 
-description.textContent =
-item.name + " x " + item.quantity +
-" — $" + (item.price * item.quantity).toFixed(2);
+itemText.textContent =
+item.name + " - $" + item.price.toFixed(2);
 
 const removeButton = document.createElement("button");
 
-removeButton.textContent = "Remove 1";
+removeButton.className = "remove-button";
+removeButton.textContent = "Remove";
 
 removeButton.onclick = function() {
-removeFromCart(item.name);
+removeFromCart(index);
 };
 
-row.appendChild(description);
+row.appendChild(itemText);
 row.appendChild(removeButton);
 
-cartDiv.appendChild(row);
+cartElement.appendChild(row);
 
 });
 
-document.getElementById("total").textContent =
-"Total: $" + total.toFixed(2);
+}
 
-document.getElementById("cart-count").textContent = count;
+totalElement.innerText = "Total: $" + total.toFixed(2);
+
 }
 
 </script>
