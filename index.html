@@ -40,12 +40,6 @@ letter-spacing: 2px;
 color: #aaa;
 }
 
-header a {
-color: white;
-text-decoration: none;
-font-weight: bold;
-}
-
 .cart-button {
 background: white;
 color: black;
@@ -167,19 +161,33 @@ font-weight: bold;
 margin-bottom: 15px;
 }
 
-.add-button {
+.add-button,
+.square-button {
 width: 100%;
-background: #111;
-color: white;
 padding: 13px;
 border: none;
 cursor: pointer;
 font-weight: bold;
 border-radius: 3px;
+margin-top: 8px;
+}
+
+.add-button {
+background: #111;
+color: white;
 }
 
 .add-button:hover {
 background: #333;
+}
+
+.square-button {
+background: #006aff;
+color: white;
+}
+
+.square-button:hover {
+background: #0053cc;
 }
 
 .cart-section {
@@ -220,7 +228,7 @@ margin: 20px 0;
 .checkout-button {
 display: block;
 width: 100%;
-background: #111;
+background: #006aff;
 color: white;
 border: none;
 padding: 15px;
@@ -232,6 +240,14 @@ border-radius: 3px;
 
 .empty-cart {
 color: #777;
+margin-bottom: 10px;
+}
+
+.cart-note {
+color: #666;
+font-size: 13px;
+margin-top: 12px;
+line-height: 1.5;
 }
 
 footer {
@@ -325,8 +341,14 @@ Total: $<span id="cart-total">0.00</span>
 </div>
 
 <button class="checkout-button" onclick="checkout()">
-Continue to Checkout
+Continue to Square Checkout
 </button>
+
+<p class="cart-note">
+Square checkout links are set up individually.
+For multiple items or different products, complete
+checkout separately for each product.
+</p>
 </section>
 
 <footer>
@@ -338,8 +360,8 @@ Continue to Checkout
 <script>
 
 // =====================================
-// PRODUCT INFORMATION AND IMAGE FILENAMES
-// Filenames must match GitHub exactly.
+// PRODUCT INFORMATION
+// Square links are your actual checkout links.
 // =====================================
 
 const products = [
@@ -348,6 +370,7 @@ const products = [
 id: 1,
 name: "Supreme Gray Camo Beanie",
 price: 50,
+squareLink: "https://square.link/u/Afvnq1eh",
 images: [
 "camo%20supreme%20front.jpeg",
 "camo%20supreme%20back.jpeg",
@@ -359,6 +382,7 @@ images: [
 id: 2,
 name: "Supreme White Beanie",
 price: 50,
+squareLink: "https://square.link/u/aULKewWl",
 images: [
 "white%20supreme%20front.jpeg",
 "white%20supreme%20back.jpeg",
@@ -370,6 +394,7 @@ images: [
 id: 3,
 name: "Supreme Black Beanie",
 price: 50,
+squareLink: "https://square.link/u/Jt2wcyb5",
 images: [
 "black%20suprem%20front.jpeg",
 "black%20supreme%20back.jpeg",
@@ -381,6 +406,7 @@ images: [
 id: 4,
 name: "Chanel Black & White Beanie",
 price: 75,
+squareLink: "https://square.link/u/OGm0l2JN",
 images: [
 "chanel%20fro%202.jpeg",
 "chanel%20back-2.jpeg",
@@ -443,6 +469,11 @@ onclick="addToCart(${product.id})">
 ADD TO CART
 </button>
 
+<button class="square-button"
+onclick="buyNow(${product.id})">
+BUY NOW WITH SQUARE
+</button>
+
 </div>
 
 `;
@@ -477,6 +508,22 @@ button.classList.add("active");
 }
 
 // =====================================
+// BUY NOW WITH SQUARE
+// =====================================
+
+function buyNow(productId) {
+
+const product = products.find(p => p.id === productId);
+
+if (!product || !product.squareLink) {
+alert("Square checkout link is unavailable.");
+return;
+}
+
+window.location.href = product.squareLink;
+}
+
+// =====================================
 // SHOPPING CART
 // =====================================
 
@@ -485,6 +532,8 @@ let cart = [];
 function addToCart(productId) {
 
 const product = products.find(p => p.id === productId);
+
+if (!product) return;
 
 cart.push(product);
 
@@ -512,7 +561,8 @@ let total = 0;
 
 if (cart.length === 0) {
 
-cartItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+cartItems.innerHTML =
+'<p class="empty-cart">Your cart is empty.</p>';
 
 }
 
@@ -542,7 +592,8 @@ cartItems.appendChild(row);
 
 });
 
-document.getElementById("cart-total").textContent = total.toFixed(2);
+document.getElementById("cart-total").textContent =
+total.toFixed(2);
 }
 
 // =====================================
@@ -561,6 +612,7 @@ section.scrollIntoView({ behavior: "smooth" });
 
 // =====================================
 // CHECKOUT
+// Current payment links are individual items.
 // =====================================
 
 function checkout() {
@@ -572,9 +624,27 @@ alert("Your cart is empty!");
 return;
 }
 
+if (cart.length > 1) {
+
 alert(
-"Your cart is ready! Online payment processing must be connected before customers can complete purchases."
+"Your Square links are set up for individual products. " +
+"Please remove extra items and check out one product at a time, " +
+"or use the BUY NOW WITH SQUARE button on each product."
 );
+
+return;
+}
+
+const product = cart[0];
+
+if (!product.squareLink) {
+
+alert("Square checkout link is unavailable.");
+
+return;
+}
+
+window.location.href = product.squareLink;
 }
 
 </script>
