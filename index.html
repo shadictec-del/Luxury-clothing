@@ -13,11 +13,19 @@ margin: 0;
 padding: 0;
 }
 
+html {
+scroll-behavior: smooth;
+}
+
 body {
 font-family: Arial, Helvetica, sans-serif;
 background: #f5f5f5;
 color: #111;
 }
+
+/* =========================
+HEADER
+========================= */
 
 header {
 background: #080808;
@@ -50,6 +58,14 @@ border: none;
 font-weight: bold;
 }
 
+.cart-button:hover {
+background: #ddd;
+}
+
+/* =========================
+HERO
+========================= */
+
 .hero {
 background: #111;
 color: white;
@@ -79,6 +95,14 @@ font-weight: bold;
 border-radius: 3px;
 }
 
+.hero a:hover {
+background: #ddd;
+}
+
+/* =========================
+SECTION
+========================= */
+
 .section-title {
 text-align: center;
 padding: 45px 15px 15px;
@@ -92,6 +116,10 @@ margin-bottom: 10px;
 .section-title p {
 color: #666;
 }
+
+/* =========================
+PRODUCTS
+========================= */
 
 .products {
 display: grid;
@@ -108,6 +136,7 @@ border-radius: 7px;
 overflow: hidden;
 box-shadow: 0 3px 12px rgba(0,0,0,0.07);
 padding-bottom: 20px;
+position: relative;
 }
 
 .product-image {
@@ -123,6 +152,10 @@ height: 100%;
 object-fit: cover;
 display: block;
 }
+
+/* =========================
+IMAGE BUTTONS
+========================= */
 
 .image-buttons {
 display: flex;
@@ -146,6 +179,10 @@ color: white;
 border-color: #111;
 }
 
+/* =========================
+PRODUCT INFO
+========================= */
+
 .product-info {
 padding: 15px;
 }
@@ -158,8 +195,34 @@ margin-bottom: 8px;
 .price {
 font-size: 21px;
 font-weight: bold;
-margin-bottom: 15px;
+margin-bottom: 10px;
 }
+
+/* =========================
+STOCK
+========================= */
+
+.stock {
+font-size: 14px;
+font-weight: bold;
+margin-bottom: 12px;
+}
+
+.stock.available {
+color: #222;
+}
+
+.stock.low {
+color: #b36b00;
+}
+
+.stock.sold-out {
+color: #c00000;
+}
+
+/* =========================
+BUTTONS
+========================= */
 
 .add-button,
 .square-button {
@@ -181,6 +244,11 @@ color: white;
 background: #333;
 }
 
+.add-button:disabled {
+background: #aaa;
+cursor: not-allowed;
+}
+
 .square-button {
 background: #006aff;
 color: white;
@@ -189,6 +257,15 @@ color: white;
 .square-button:hover {
 background: #0053cc;
 }
+
+.square-button:disabled {
+background: #aaa;
+cursor: not-allowed;
+}
+
+/* =========================
+CART
+========================= */
 
 .cart-section {
 background: white;
@@ -212,11 +289,56 @@ padding: 15px 0;
 border-bottom: 1px solid #ddd;
 }
 
+.cart-item-info {
+flex: 1;
+}
+
+.cart-item-name {
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+.cart-item-price {
+color: #555;
+}
+
+.quantity-controls {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.quantity-button {
+width: 32px;
+height: 32px;
+border: none;
+background: #111;
+color: white;
+cursor: pointer;
+border-radius: 3px;
+font-weight: bold;
+}
+
+.quantity-button:hover {
+background: #333;
+}
+
+.quantity {
+min-width: 25px;
+text-align: center;
+font-weight: bold;
+}
+
 .remove-button {
 background: #eee;
 border: none;
 padding: 8px 12px;
 cursor: pointer;
+border-radius: 3px;
+}
+
+.remove-button:hover {
+background: #ddd;
 }
 
 .cart-total {
@@ -238,6 +360,10 @@ cursor: pointer;
 border-radius: 3px;
 }
 
+.checkout-button:hover {
+background: #0053cc;
+}
+
 .empty-cart {
 color: #777;
 margin-bottom: 10px;
@@ -249,6 +375,10 @@ font-size: 13px;
 margin-top: 12px;
 line-height: 1.5;
 }
+
+/* =========================
+FOOTER
+========================= */
 
 footer {
 background: #080808;
@@ -263,6 +393,10 @@ margin-top: 10px;
 font-size: 14px;
 }
 
+/* =========================
+MOBILE
+========================= */
+
 @media (max-width: 1000px) {
 .products {
 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -270,6 +404,7 @@ grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 @media (max-width: 500px) {
+
 header {
 padding: 18px 5%;
 }
@@ -304,6 +439,14 @@ gap: 3px;
 font-size: 11px;
 padding: 8px 2px;
 }
+
+.cart-item {
+flex-wrap: wrap;
+}
+
+.quantity-controls {
+order: 2;
+}
 }
 </style>
 </head>
@@ -311,27 +454,49 @@ padding: 8px 2px;
 <body>
 
 <header>
-<div class="logo">REVENTA <span>MARKETS</span></div>
+
+<div class="logo">
+REVENTA <span>MARKETS</span>
+</div>
 
 <button class="cart-button" onclick="toggleCart()">
 🛒 Cart (<span id="cart-count">0</span>)
 </button>
+
 </header>
 
+
 <section class="hero">
+
 <h1>PREMIUM STREETWEAR</h1>
-<p>Discover your next favorite piece.</p>
-<a href="#shop">SHOP COLLECTION</a>
+
+<p>
+Discover your next favorite piece.
+</p>
+
+<a href="#shop">
+SHOP COLLECTION
+</a>
+
 </section>
 
+
 <section class="section-title" id="shop">
+
 <h2>Our Collection</h2>
-<p>Premium beanies. Clean style. Reventa Markets.</p>
+
+<p>
+Premium beanies. Clean style. Reventa Markets.
+</p>
+
 </section>
+
 
 <div class="products" id="products"></div>
 
+
 <section class="cart-section" id="cart-section">
+
 <h2>Your Shopping Cart</h2>
 
 <div id="cart-items"></div>
@@ -349,20 +514,30 @@ Square checkout links are set up individually.
 For multiple items or different products, complete
 checkout separately for each product.
 </p>
+
 </section>
 
+
 <footer>
+
 <h3>REVENTA MARKETS</h3>
-<p>Premium Streetwear | Shop the Collection</p>
-<p>© 2026 Reventa Markets. All rights reserved.</p>
+
+<p>
+Premium Streetwear | Shop the Collection
+</p>
+
+<p>
+© 2026 Reventa Markets. All rights reserved.
+</p>
+
 </footer>
+
 
 <script>
 
-// =====================================
-// PRODUCT INFORMATION
-// Square links are your actual checkout links.
-// =====================================
+/* =====================================
+PRODUCT INFORMATION
+===================================== */
 
 const products = [
 
@@ -370,7 +545,10 @@ const products = [
 id: 1,
 name: "Supreme Gray Camo Beanie",
 price: 50,
+stock: 3,
+
 squareLink: "https://square.link/u/Afvnq1eh",
+
 images: [
 "camo%20supreme%20front.jpeg",
 "camo%20supreme%20back.jpeg",
@@ -382,7 +560,10 @@ images: [
 id: 2,
 name: "Supreme White Beanie",
 price: 50,
+stock: 3,
+
 squareLink: "https://square.link/u/aULKewWl",
+
 images: [
 "white%20supreme%20front.jpeg",
 "white%20supreme%20back.jpeg",
@@ -394,7 +575,10 @@ images: [
 id: 3,
 name: "Supreme Black Beanie",
 price: 50,
+stock: 3,
+
 squareLink: "https://square.link/u/Jt2wcyb5",
+
 images: [
 "black%20suprem%20front.jpeg",
 "black%20supreme%20back.jpeg",
@@ -406,7 +590,10 @@ images: [
 id: 4,
 name: "Chanel Black & White Beanie",
 price: 75,
+stock: 3,
+
 squareLink: "https://square.link/u/OGm0l2JN",
+
 images: [
 "chanel%20fro%202.jpeg",
 "chanel%20back-2.jpeg",
@@ -416,11 +603,37 @@ images: [
 
 ];
 
-// =====================================
-// DISPLAY PRODUCTS
-// =====================================
 
-const productsContainer = document.getElementById("products");
+/* =====================================
+CART
+===================================== */
+
+let cart = [];
+
+
+/* =====================================
+GET QUANTITY IN CART
+===================================== */
+
+function getCartQuantity(productId) {
+
+const item = cart.find(item => item.id === productId);
+
+if (!item) {
+return 0;
+}
+
+return item.quantity;
+}
+
+
+/* =====================================
+DISPLAY PRODUCTS
+===================================== */
+
+const productsContainer =
+document.getElementById("products");
+
 
 products.forEach(product => {
 
@@ -431,133 +644,405 @@ card.className = "product";
 card.innerHTML = `
 
 <div class="product-image">
+
 <img
 id="image-${product.id}"
 src="${product.images[0]}"
 alt="${product.name}"
-onerror="this.onerror=null;this.alt='Image unavailable';this.src='';"
+onerror="imageError(this)"
 >
+
 </div>
+
 
 <div class="image-buttons">
 
-<button class="active"
-onclick="changeImage(${product.id}, 0, this)">
+<button
+class="active"
+onclick="changeImage(${product.id}, 0, this)"
+>
 Front
 </button>
 
 <button
-onclick="changeImage(${product.id}, 1, this)">
+onclick="changeImage(${product.id}, 1, this)"
+>
 Back
 </button>
 
 <button
-onclick="changeImage(${product.id}, 2, this)">
+onclick="changeImage(${product.id}, 2, this)"
+>
 Tag
 </button>
 
 </div>
 
+
 <div class="product-info">
 
-<h3>${product.name}</h3>
+<h3>
+${product.name}
+</h3>
 
-<div class="price">$${product.price.toFixed(2)}</div>
+<div class="price">
+$${product.price.toFixed(2)}
+</div>
 
-<button class="add-button"
-onclick="addToCart(${product.id})">
+<div
+class="stock available"
+id="stock-${product.id}"
+>
+3 left
+</div>
+
+<button
+class="add-button"
+id="add-${product.id}"
+onclick="addToCart(${product.id})"
+>
 ADD TO CART
 </button>
 
-<button class="square-button"
-onclick="buyNow(${product.id})">
+<button
+class="square-button"
+id="buy-${product.id}"
+onclick="buyNow(${product.id})"
+>
 BUY NOW WITH SQUARE
 </button>
 
 </div>
-
 `;
 
 productsContainer.appendChild(card);
 
 });
 
-// =====================================
-// CHANGE PRODUCT IMAGE
-// =====================================
+
+/* =====================================
+IMAGE ERROR
+===================================== */
+
+function imageError(image) {
+
+image.onerror = null;
+
+image.alt = "Image unavailable";
+
+image.src = "";
+
+}
+
+
+/* =====================================
+CHANGE IMAGE
+===================================== */
 
 function changeImage(productId, imageIndex, button) {
 
-const product = products.find(p => p.id === productId);
+const product =
+products.find(p => p.id === productId);
 
-const image = document.getElementById(`image-${productId}`);
+const image =
+document.getElementById(`image-${productId}`);
 
 image.onerror = function() {
+
 this.onerror = null;
+
 this.alt = "Image unavailable";
+
 this.src = "";
+
 };
 
 image.src = product.images[imageIndex];
 
-const buttons = button.parentElement.querySelectorAll("button");
 
-buttons.forEach(btn => btn.classList.remove("active"));
+const buttons =
+button.parentElement.querySelectorAll("button");
+
+buttons.forEach(btn => {
+
+btn.classList.remove("active");
+
+});
 
 button.classList.add("active");
+
 }
 
-// =====================================
-// BUY NOW WITH SQUARE
-// =====================================
 
-function buyNow(productId) {
+/* =====================================
+UPDATE STOCK DISPLAY
+===================================== */
 
-const product = products.find(p => p.id === productId);
+function updateStockDisplay(productId) {
 
-if (!product || !product.squareLink) {
-alert("Square checkout link is unavailable.");
-return;
+const product =
+products.find(p => p.id === productId);
+
+const quantityInCart =
+getCartQuantity(productId);
+
+const remaining =
+product.stock - quantityInCart;
+
+const stockElement =
+document.getElementById(`stock-${productId}`);
+
+const addButton =
+document.getElementById(`add-${productId}`);
+
+const buyButton =
+document.getElementById(`buy-${productId}`);
+
+
+stockElement.classList.remove(
+"available",
+"low",
+"sold-out"
+);
+
+
+if (remaining <= 0) {
+
+stockElement.textContent =
+"SOLD OUT";
+
+stockElement.classList.add(
+"sold-out"
+);
+
+addButton.disabled = true;
+
+addButton.textContent =
+"SOLD OUT";
+
 }
 
-window.location.href = product.squareLink;
+else if (remaining === 1) {
+
+stockElement.textContent =
+"1 left";
+
+stockElement.classList.add(
+"low"
+);
+
+addButton.disabled = false;
+
+addButton.textContent =
+"ADD TO CART";
+
 }
 
-// =====================================
-// SHOPPING CART
-// =====================================
+else {
 
-let cart = [];
+stockElement.textContent =
+`${remaining} left`;
+
+stockElement.classList.add(
+"available"
+);
+
+addButton.disabled = false;
+
+addButton.textContent =
+"ADD TO CART";
+
+}
+
+
+/*
+Buy Now stays available as long as
+there is at least one item remaining.
+*/
+
+buyButton.disabled = remaining <= 0;
+
+}
+
+
+/* =====================================
+UPDATE ALL STOCK
+===================================== */
+
+function updateAllStockDisplays() {
+
+products.forEach(product => {
+
+updateStockDisplay(product.id);
+
+});
+
+}
+
+
+/* =====================================
+ADD TO CART
+===================================== */
 
 function addToCart(productId) {
 
-const product = products.find(p => p.id === productId);
+const product =
+products.find(p => p.id === productId);
 
 if (!product) return;
 
-cart.push(product);
+
+const currentQuantity =
+getCartQuantity(productId);
+
+
+if (currentQuantity >= product.stock) {
+
+alert(
+`Only ${product.stock} available for ${product.name}.`
+);
+
+return;
+
+}
+
+
+const existingItem =
+cart.find(item => item.id === productId);
+
+
+if (existingItem) {
+
+existingItem.quantity++;
+
+}
+
+else {
+
+cart.push({
+
+id: product.id,
+
+name: product.name,
+
+price: product.price,
+
+quantity: 1
+
+});
+
+}
+
 
 updateCart();
 
-alert(product.name + " added to your cart!");
+updateAllStockDisplays();
+
+
+alert(
+product.name + " added to your cart!"
+);
+
 }
 
-function removeFromCart(index) {
 
-cart.splice(index, 1);
+/* =====================================
+REMOVE ENTIRE PRODUCT
+===================================== */
+
+function removeFromCart(productId) {
+
+cart =
+cart.filter(item => item.id !== productId);
 
 updateCart();
+
+updateAllStockDisplays();
+
 }
+
+
+/* =====================================
+CHANGE CART QUANTITY
+===================================== */
+
+function changeQuantity(productId, change) {
+
+const product =
+products.find(p => p.id === productId);
+
+const item =
+cart.find(item => item.id === productId);
+
+if (!product || !item) return;
+
+
+const newQuantity =
+item.quantity + change;
+
+
+if (newQuantity <= 0) {
+
+removeFromCart(productId);
+
+return;
+
+}
+
+
+if (newQuantity > product.stock) {
+
+alert(
+`Only ${product.stock} available for ${product.name}.`
+);
+
+return;
+
+}
+
+
+item.quantity =
+newQuantity;
+
+
+updateCart();
+
+updateAllStockDisplays();
+
+}
+
+
+/* =====================================
+UPDATE CART
+===================================== */
 
 function updateCart() {
 
-document.getElementById("cart-count").textContent = cart.length;
+let totalItems = 0;
 
-const cartItems = document.getElementById("cart-items");
+let totalPrice = 0;
+
+
+cart.forEach(item => {
+
+totalItems += item.quantity;
+
+totalPrice +=
+item.price * item.quantity;
+
+});
+
+
+document.getElementById(
+"cart-count"
+).textContent = totalItems;
+
+
+const cartItems =
+document.getElementById("cart-items");
 
 cartItems.innerHTML = "";
 
-let total = 0;
 
 if (cart.length === 0) {
 
@@ -566,86 +1051,217 @@ cartItems.innerHTML =
 
 }
 
-cart.forEach((item, index) => {
 
-total += item.price;
+cart.forEach(item => {
 
-const row = document.createElement("div");
+const row =
+document.createElement("div");
 
-row.className = "cart-item";
+row.className =
+"cart-item";
+
 
 row.innerHTML = `
 
-<div>
-<strong>${item.name}</strong><br>
-$${item.price.toFixed(2)}
+<div class="cart-item-info">
+
+<div class="cart-item-name">
+${item.name}
 </div>
 
-<button class="remove-button"
-onclick="removeFromCart(${index})">
+<div class="cart-item-price">
+$${item.price.toFixed(2)} each
+</div>
+
+</div>
+
+
+<div class="quantity-controls">
+
+<button
+class="quantity-button"
+onclick="changeQuantity(${item.id}, -1)"
+>
+−
+</button>
+
+<span class="quantity">
+${item.quantity}
+</span>
+
+<button
+class="quantity-button"
+onclick="changeQuantity(${item.id}, 1)"
+>
++
+</button>
+
+</div>
+
+
+<button
+class="remove-button"
+onclick="removeFromCart(${item.id})"
+>
 Remove
 </button>
 
 `;
 
+
 cartItems.appendChild(row);
 
 });
 
-document.getElementById("cart-total").textContent =
-total.toFixed(2);
+
+document.getElementById(
+"cart-total"
+).textContent =
+totalPrice.toFixed(2);
+
 }
 
-// =====================================
-// SHOW / HIDE CART
-// =====================================
+
+/* =====================================
+BUY NOW WITH SQUARE
+===================================== */
+
+function buyNow(productId) {
+
+const product =
+products.find(p => p.id === productId);
+
+if (!product) return;
+
+
+const currentQuantity =
+getCartQuantity(productId);
+
+
+if (
+currentQuantity >= product.stock
+) {
+
+alert(
+"This item is currently sold out."
+);
+
+return;
+
+}
+
+
+if (!product.squareLink) {
+
+alert(
+"Square checkout link is unavailable."
+);
+
+return;
+
+}
+
+
+window.location.href =
+product.squareLink;
+
+}
+
+
+/* =====================================
+SHOW / HIDE CART
+===================================== */
 
 function toggleCart() {
 
-const section = document.getElementById("cart-section");
+const section =
+document.getElementById(
+"cart-section"
+);
+
+
+if (
+section.style.display === "block"
+) {
 
 section.style.display =
-section.style.display === "block" ? "none" : "block";
+"none";
 
-section.scrollIntoView({ behavior: "smooth" });
 }
 
-// =====================================
-// CHECKOUT
-// Current payment links are individual items.
-// =====================================
+else {
+
+section.style.display =
+"block";
+
+section.scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+}
+
+
+/* =====================================
+CHECKOUT
+===================================== */
 
 function checkout() {
 
 if (cart.length === 0) {
 
-alert("Your cart is empty!");
+alert(
+"Your cart is empty!"
+);
 
 return;
+
 }
+
 
 if (cart.length > 1) {
 
 alert(
 "Your Square links are set up for individual products. " +
-"Please remove extra items and check out one product at a time, " +
-"or use the BUY NOW WITH SQUARE button on each product."
+"Please check out one product at a time."
 );
 
 return;
+
 }
 
-const product = cart[0];
 
-if (!product.squareLink) {
+const product =
+products.find(
+p => p.id === cart[0].id
+);
 
-alert("Square checkout link is unavailable.");
+
+if (!product || !product.squareLink) {
+
+alert(
+"Square checkout link is unavailable."
+);
 
 return;
+
 }
 
-window.location.href = product.squareLink;
+
+window.location.href =
+product.squareLink;
+
 }
+
+
+/* =====================================
+START STOCK DISPLAY
+===================================== */
+
+updateAllStockDisplays();
+
+updateCart();
 
 </script>
 
