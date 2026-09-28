@@ -7,6 +7,7 @@
 <title>Reventa Markets | Premium Streetwear</title>
 
 <style>
+
 * {
 box-sizing: border-box;
 margin: 0;
@@ -36,6 +37,9 @@ justify-content: space-between;
 align-items: center;
 flex-wrap: wrap;
 gap: 15px;
+position: sticky;
+top: 0;
+z-index: 1000;
 }
 
 .logo {
@@ -56,10 +60,12 @@ border-radius: 4px;
 cursor: pointer;
 border: none;
 font-weight: bold;
+transition: 0.2s;
 }
 
 .cart-button:hover {
 background: #ddd;
+transform: translateY(-1px);
 }
 
 /* =========================
@@ -93,10 +99,12 @@ padding: 14px 28px;
 text-decoration: none;
 font-weight: bold;
 border-radius: 3px;
+transition: 0.2s;
 }
 
 .hero a:hover {
 background: #ddd;
+transform: translateY(-2px);
 }
 
 /* =========================
@@ -137,7 +145,36 @@ overflow: hidden;
 box-shadow: 0 3px 12px rgba(0,0,0,0.07);
 padding-bottom: 20px;
 position: relative;
+transition: 0.2s;
 }
+
+.product:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* PRODUCT BADGE */
+
+.product-badge {
+position: absolute;
+top: 12px;
+left: 12px;
+background: #111;
+color: white;
+padding: 6px 9px;
+font-size: 11px;
+font-weight: bold;
+border-radius: 3px;
+z-index: 5;
+}
+
+.product-badge.low {
+background: #b36b00;
+}
+
+/* =========================
+IMAGE
+========================= */
 
 .product-image {
 width: 100%;
@@ -151,6 +188,11 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 display: block;
+transition: 0.3s;
+}
+
+.product:hover .product-image img {
+transform: scale(1.02);
 }
 
 /* =========================
@@ -233,6 +275,7 @@ cursor: pointer;
 font-weight: bold;
 border-radius: 3px;
 margin-top: 8px;
+transition: 0.2s;
 }
 
 .add-button {
@@ -377,6 +420,45 @@ line-height: 1.5;
 }
 
 /* =========================
+TRUST SECTION
+========================= */
+
+.trust-section {
+background: #fff;
+padding: 45px 20px;
+text-align: center;
+}
+
+.trust-section h2 {
+margin-bottom: 20px;
+}
+
+.trust-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+max-width: 900px;
+margin: auto;
+}
+
+.trust-item {
+padding: 20px;
+border: 1px solid #eee;
+border-radius: 6px;
+}
+
+.trust-item strong {
+display: block;
+margin-bottom: 8px;
+}
+
+.trust-item p {
+color: #666;
+font-size: 14px;
+line-height: 1.5;
+}
+
+/* =========================
 FOOTER
 ========================= */
 
@@ -394,13 +476,45 @@ font-size: 14px;
 }
 
 /* =========================
+TOAST
+========================= */
+
+.toast {
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: #111;
+color: white;
+padding: 13px 20px;
+border-radius: 5px;
+font-weight: bold;
+font-size: 14px;
+opacity: 0;
+transition: 0.3s;
+z-index: 2000;
+}
+
+.toast.show {
+opacity: 1;
+transform: translateX(-50%) translateY(0);
+}
+
+/* =========================
 MOBILE
 ========================= */
 
 @media (max-width: 1000px) {
+
 .products {
 grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.trust-grid {
+grid-template-columns: 1fr;
+max-width: 500px;
+}
+
 }
 
 @media (max-width: 500px) {
@@ -447,7 +561,23 @@ flex-wrap: wrap;
 .quantity-controls {
 order: 2;
 }
+
+.remove-button {
+order: 3;
 }
+
+}
+
+/* EXTRA SMALL PHONES */
+
+@media (max-width: 360px) {
+
+.products {
+grid-template-columns: 1fr;
+}
+
+}
+
 </style>
 </head>
 
@@ -511,9 +641,44 @@ Continue to Square Checkout
 
 <p class="cart-note">
 Square checkout links are set up individually.
-For multiple items or different products, complete
-checkout separately for each product.
+For multiple items, checkout is currently completed
+one product at a time.
 </p>
+
+</section>
+
+
+<!-- TRUST SECTION -->
+
+<section class="trust-section">
+
+<h2>Why Shop Reventa Markets?</h2>
+
+<div class="trust-grid">
+
+<div class="trust-item">
+<strong>🔥 Curated Streetwear</strong>
+<p>
+Clean pieces selected for everyday streetwear style.
+</p>
+</div>
+
+<div class="trust-item">
+<strong>💳 Secure Checkout</strong>
+<p>
+Checkout is handled securely through Square.
+</p>
+</div>
+
+<div class="trust-item">
+<strong>📦 Limited Stock</strong>
+<p>
+Many pieces are available in limited quantities.
+Once they're gone, they're gone.
+</p>
+</div>
+
+</div>
 
 </section>
 
@@ -533,6 +698,11 @@ Premium Streetwear | Shop the Collection
 </footer>
 
 
+<div class="toast" id="toast">
+Added to cart!
+</div>
+
+
 <script>
 
 /* =====================================
@@ -544,8 +714,9 @@ const products = [
 {
 id: 1,
 name: "Supreme Gray Camo Beanie",
-price: 50,
+price: 35,
 stock: 3,
+badge: "NEW",
 
 squareLink: "https://square.link/u/Afvnq1eh",
 
@@ -559,8 +730,9 @@ images: [
 {
 id: 2,
 name: "Supreme White Beanie",
-price: 50,
+price: 35,
 stock: 2,
+badge: "NEW",
 
 squareLink: "https://square.link/u/aULKewWl",
 
@@ -574,8 +746,9 @@ images: [
 {
 id: 3,
 name: "Supreme Black Beanie",
-price: 50,
+price: 35,
 stock: 1,
+badge: "LOW STOCK",
 
 squareLink: "https://square.link/u/Jt2wcyb5",
 
@@ -589,8 +762,9 @@ images: [
 {
 id: 4,
 name: "Chanel Black & White Beanie",
-price: 75,
+price: 50,
 stock: 2,
+badge: "LIMITED",
 
 squareLink: "https://square.link/u/OGm0l2JN",
 
@@ -608,7 +782,23 @@ images: [
 CART
 ===================================== */
 
-let cart = [];
+let cart = JSON.parse(
+localStorage.getItem("reventaCart")
+) || [];
+
+
+/* =====================================
+SAVE CART
+===================================== */
+
+function saveCart() {
+
+localStorage.setItem(
+"reventaCart",
+JSON.stringify(cart)
+);
+
+}
 
 
 /* =====================================
@@ -617,13 +807,15 @@ GET QUANTITY IN CART
 
 function getCartQuantity(productId) {
 
-const item = cart.find(item => item.id === productId);
+const item =
+cart.find(item => item.id === productId);
 
 if (!item) {
 return 0;
 }
 
 return item.quantity;
+
 }
 
 
@@ -637,11 +829,26 @@ document.getElementById("products");
 
 products.forEach(product => {
 
-const card = document.createElement("div");
+const card =
+document.createElement("div");
 
 card.className = "product";
 
+let badgeHTML = "";
+
+if (product.badge) {
+
+badgeHTML = `
+<div class="product-badge">
+${product.badge}
+</div>
+`;
+
+}
+
 card.innerHTML = `
+
+${badgeHTML}
 
 <div class="product-image">
 
@@ -713,6 +920,7 @@ BUY NOW WITH SQUARE
 </button>
 
 </div>
+
 `;
 
 productsContainer.appendChild(card);
@@ -739,13 +947,19 @@ image.src = "";
 CHANGE IMAGE
 ===================================== */
 
-function changeImage(productId, imageIndex, button) {
+function changeImage(
+productId,
+imageIndex,
+button
+) {
 
 const product =
 products.find(p => p.id === productId);
 
 const image =
-document.getElementById(`image-${productId}`);
+document.getElementById(
+`image-${productId}`
+);
 
 image.onerror = function() {
 
@@ -757,11 +971,13 @@ this.src = "";
 
 };
 
-image.src = product.images[imageIndex];
+image.src =
+product.images[imageIndex];
 
 
 const buttons =
-button.parentElement.querySelectorAll("button");
+button.parentElement
+.querySelectorAll("button");
 
 buttons.forEach(btn => {
 
@@ -790,13 +1006,19 @@ const remaining =
 product.stock - quantityInCart;
 
 const stockElement =
-document.getElementById(`stock-${productId}`);
+document.getElementById(
+`stock-${productId}`
+);
 
 const addButton =
-document.getElementById(`add-${productId}`);
+document.getElementById(
+`add-${productId}`
+);
 
 const buyButton =
-document.getElementById(`buy-${productId}`);
+document.getElementById(
+`buy-${productId}`
+);
 
 
 stockElement.classList.remove(
@@ -854,13 +1076,8 @@ addButton.textContent =
 
 }
 
-
-/*
-Buy Now stays available as long as
-there is at least one item remaining.
-*/
-
-buyButton.disabled = remaining <= 0;
+buyButton.disabled =
+remaining <= 0;
 
 }
 
@@ -876,6 +1093,28 @@ products.forEach(product => {
 updateStockDisplay(product.id);
 
 });
+
+}
+
+
+/* =====================================
+TOAST
+===================================== */
+
+function showToast(message) {
+
+const toast =
+document.getElementById("toast");
+
+toast.textContent = message;
+
+toast.classList.add("show");
+
+setTimeout(() => {
+
+toast.classList.remove("show");
+
+}, 2000);
 
 }
 
@@ -898,8 +1137,8 @@ getCartQuantity(productId);
 
 if (currentQuantity >= product.stock) {
 
-alert(
-`Only ${product.stock} available for ${product.name}.`
+showToast(
+`Only ${product.stock} available.`
 );
 
 return;
@@ -934,13 +1173,15 @@ quantity: 1
 }
 
 
+saveCart();
+
 updateCart();
 
 updateAllStockDisplays();
 
 
-alert(
-product.name + " added to your cart!"
+showToast(
+product.name + " added to cart!"
 );
 
 }
@@ -955,6 +1196,8 @@ function removeFromCart(productId) {
 cart =
 cart.filter(item => item.id !== productId);
 
+saveCart();
+
 updateCart();
 
 updateAllStockDisplays();
@@ -966,7 +1209,10 @@ updateAllStockDisplays();
 CHANGE CART QUANTITY
 ===================================== */
 
-function changeQuantity(productId, change) {
+function changeQuantity(
+productId,
+change
+) {
 
 const product =
 products.find(p => p.id === productId);
@@ -992,8 +1238,8 @@ return;
 
 if (newQuantity > product.stock) {
 
-alert(
-`Only ${product.stock} available for ${product.name}.`
+showToast(
+`Only ${product.stock} available.`
 );
 
 return;
@@ -1004,6 +1250,8 @@ return;
 item.quantity =
 newQuantity;
 
+
+saveCart();
 
 updateCart();
 
@@ -1039,7 +1287,9 @@ document.getElementById(
 
 
 const cartItems =
-document.getElementById("cart-items");
+document.getElementById(
+"cart-items"
+);
 
 cartItems.innerHTML = "";
 
@@ -1138,11 +1388,9 @@ const currentQuantity =
 getCartQuantity(productId);
 
 
-if (
-currentQuantity >= product.stock
-) {
+if (currentQuantity >= product.stock) {
 
-alert(
+showToast(
 "This item is currently sold out."
 );
 
@@ -1153,8 +1401,8 @@ return;
 
 if (!product.squareLink) {
 
-alert(
-"Square checkout link is unavailable."
+showToast(
+"Square checkout link unavailable."
 );
 
 return;
@@ -1211,7 +1459,7 @@ function checkout() {
 
 if (cart.length === 0) {
 
-alert(
+showToast(
 "Your cart is empty!"
 );
 
@@ -1223,7 +1471,7 @@ return;
 if (cart.length > 1) {
 
 alert(
-"Your Square links are set up for individual products. " +
+"Your Square links are currently set up for individual products. " +
 "Please check out one product at a time."
 );
 
@@ -1238,10 +1486,13 @@ p => p.id === cart[0].id
 );
 
 
-if (!product || !product.squareLink) {
+if (
+!product ||
+!product.squareLink
+) {
 
-alert(
-"Square checkout link is unavailable."
+showToast(
+"Square checkout link unavailable."
 );
 
 return;
@@ -1256,7 +1507,7 @@ product.squareLink;
 
 
 /* =====================================
-START STOCK DISPLAY
+START
 ===================================== */
 
 updateAllStockDisplays();
