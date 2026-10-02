@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reventa Markets | Premium Streetwear</title>
+<title>Revanta Markets | Premium Streetwear</title>
+
+<meta name="description" content="Revanta Markets — curated streetwear, limited pieces, and clean everyday style.">
 
 <style>
 
@@ -25,21 +27,35 @@ color: #111;
 }
 
 /* =========================
+ANNOUNCEMENT BAR
+========================= */
+
+.announcement {
+background: #111;
+color: white;
+text-align: center;
+padding: 9px 15px;
+font-size: 12px;
+font-weight: bold;
+letter-spacing: 1px;
+}
+
+/* =========================
 HEADER
 ========================= */
 
 header {
 background: #080808;
 color: white;
-padding: 22px 6%;
+padding: 20px 6%;
 display: flex;
 justify-content: space-between;
 align-items: center;
-flex-wrap: wrap;
-gap: 15px;
+gap: 20px;
 position: sticky;
 top: 0;
 z-index: 1000;
+border-bottom: 1px solid #222;
 }
 
 .logo {
@@ -49,7 +65,34 @@ letter-spacing: 2px;
 }
 
 .logo span {
-color: #aaa;
+color: #777;
+}
+
+.header-right {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.social-mini {
+display: flex;
+gap: 7px;
+}
+
+.social-mini a {
+color: white;
+text-decoration: none;
+border: 1px solid #333;
+padding: 9px 11px;
+border-radius: 4px;
+font-size: 11px;
+font-weight: bold;
+transition: 0.2s;
+}
+
+.social-mini a:hover {
+background: white;
+color: black;
 }
 
 .cart-button {
@@ -73,22 +116,63 @@ HERO
 ========================= */
 
 .hero {
-background: #111;
+background:
+linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+#111;
 color: white;
 text-align: center;
-padding: 75px 20px;
+padding: 95px 20px 90px;
+position: relative;
+overflow: hidden;
+}
+
+.hero:after {
+content: "REVANTA";
+position: absolute;
+font-size: clamp(100px, 22vw, 300px);
+font-weight: 900;
+letter-spacing: -10px;
+color: rgba(255,255,255,0.025);
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+white-space: nowrap;
+pointer-events: none;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+}
+
+.hero-label {
+font-size: 11px;
+letter-spacing: 4px;
+color: #aaa;
+margin-bottom: 18px;
+font-weight: bold;
 }
 
 .hero h1 {
-font-size: clamp(32px, 6vw, 58px);
-margin-bottom: 15px;
+font-size: clamp(38px, 7vw, 72px);
+margin-bottom: 18px;
 letter-spacing: 2px;
+font-weight: 900;
 }
 
 .hero p {
 color: #ccc;
 font-size: 17px;
-margin-bottom: 25px;
+max-width: 600px;
+margin: 0 auto 28px;
+line-height: 1.6;
+}
+
+.hero-buttons {
+display: flex;
+justify-content: center;
+gap: 10px;
+flex-wrap: wrap;
 }
 
 .hero a {
@@ -107,13 +191,52 @@ background: #ddd;
 transform: translateY(-2px);
 }
 
+.hero-social {
+color: #aaa;
+font-size: 12px;
+margin-top: 22px;
+}
+
+.hero-social a {
+background: transparent;
+color: white;
+padding: 0;
+text-decoration: underline;
+}
+
+/* =========================
+FEATURE STRIP
+========================= */
+
+.feature-strip {
+background: white;
+border-bottom: 1px solid #eee;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+text-align: center;
+}
+
+.feature {
+padding: 19px 10px;
+font-size: 12px;
+font-weight: bold;
+letter-spacing: .5px;
+}
+
+.feature span {
+color: #777;
+display: block;
+font-weight: normal;
+margin-top: 4px;
+}
+
 /* =========================
 SECTION
 ========================= */
 
 .section-title {
 text-align: center;
-padding: 45px 15px 15px;
+padding: 55px 15px 15px;
 }
 
 .section-title h2 {
@@ -145,12 +268,12 @@ overflow: hidden;
 box-shadow: 0 3px 12px rgba(0,0,0,0.07);
 padding-bottom: 20px;
 position: relative;
-transition: 0.2s;
+transition: 0.25s;
 }
 
 .product:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0,0,0,0.13);
 }
 
 /* PRODUCT BADGE */
@@ -166,6 +289,7 @@ font-size: 11px;
 font-weight: bold;
 border-radius: 3px;
 z-index: 5;
+letter-spacing: .5px;
 }
 
 .product-badge.low {
@@ -188,11 +312,11 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 display: block;
-transition: 0.3s;
+transition: 0.35s;
 }
 
 .product:hover .product-image img {
-transform: scale(1.02);
+transform: scale(1.035);
 }
 
 /* =========================
@@ -213,6 +337,11 @@ background: white;
 cursor: pointer;
 font-size: 12px;
 border-radius: 3px;
+transition: .2s;
+}
+
+.image-buttons button:hover {
+border-color: #111;
 }
 
 .image-buttons button.active {
@@ -232,6 +361,7 @@ padding: 15px;
 .product-info h3 {
 font-size: 17px;
 margin-bottom: 8px;
+line-height: 1.3;
 }
 
 .price {
@@ -245,7 +375,7 @@ STOCK
 ========================= */
 
 .stock {
-font-size: 14px;
+font-size: 13px;
 font-weight: bold;
 margin-bottom: 12px;
 }
@@ -304,6 +434,37 @@ background: #0053cc;
 .square-button:disabled {
 background: #aaa;
 cursor: not-allowed;
+}
+
+/* =========================
+DROP BANNER
+========================= */
+
+.drop-banner {
+max-width: 1400px;
+margin: 0 auto 60px;
+padding: 45px 30px;
+background: #111;
+color: white;
+text-align: center;
+}
+
+.drop-banner small {
+color: #999;
+letter-spacing: 3px;
+font-weight: bold;
+}
+
+.drop-banner h2 {
+font-size: clamp(27px, 5vw, 42px);
+margin: 12px 0;
+}
+
+.drop-banner p {
+color: #bbb;
+max-width: 600px;
+margin: auto;
+line-height: 1.6;
 }
 
 /* =========================
@@ -425,26 +586,37 @@ TRUST SECTION
 
 .trust-section {
 background: #fff;
-padding: 45px 20px;
+padding: 55px 20px;
 text-align: center;
 }
 
 .trust-section h2 {
-margin-bottom: 20px;
+margin-bottom: 25px;
 }
 
 .trust-grid {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 20px;
-max-width: 900px;
+max-width: 1000px;
 margin: auto;
 }
 
 .trust-item {
-padding: 20px;
+padding: 25px 20px;
 border: 1px solid #eee;
 border-radius: 6px;
+transition: .2s;
+}
+
+.trust-item:hover {
+border-color: #ccc;
+transform: translateY(-2px);
+}
+
+.trust-item .icon {
+font-size: 25px;
+margin-bottom: 12px;
 }
 
 .trust-item strong {
@@ -459,6 +631,52 @@ line-height: 1.5;
 }
 
 /* =========================
+SOCIAL SECTION
+========================= */
+
+.social-section {
+background: #f5f5f5;
+text-align: center;
+padding: 60px 20px;
+}
+
+.social-section h2 {
+font-size: 28px;
+margin-bottom: 10px;
+}
+
+.social-section p {
+color: #666;
+margin-bottom: 25px;
+}
+
+.social-buttons {
+display: flex;
+justify-content: center;
+gap: 12px;
+flex-wrap: wrap;
+}
+
+.social-button {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: #111;
+color: white;
+text-decoration: none;
+padding: 13px 22px;
+border-radius: 4px;
+font-weight: bold;
+font-size: 13px;
+transition: .2s;
+}
+
+.social-button:hover {
+background: #333;
+transform: translateY(-2px);
+}
+
+/* =========================
 FOOTER
 ========================= */
 
@@ -466,13 +684,45 @@ footer {
 background: #080808;
 color: white;
 text-align: center;
-padding: 35px 15px;
+padding: 45px 15px 30px;
+}
+
+footer h3 {
+letter-spacing: 2px;
 }
 
 footer p {
 color: #aaa;
 margin-top: 10px;
 font-size: 14px;
+}
+
+.footer-socials {
+margin: 20px 0;
+display: flex;
+justify-content: center;
+gap: 10px;
+}
+
+.footer-socials a {
+color: #aaa;
+text-decoration: none;
+font-size: 13px;
+padding: 8px 12px;
+border: 1px solid #333;
+border-radius: 3px;
+transition: .2s;
+}
+
+.footer-socials a:hover {
+color: white;
+border-color: white;
+}
+
+.copyright {
+margin-top: 20px;
+font-size: 12px;
+color: #666;
 }
 
 /* =========================
@@ -515,16 +765,40 @@ grid-template-columns: 1fr;
 max-width: 500px;
 }
 
+.social-mini {
+display: none;
 }
 
-@media (max-width: 500px) {
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width: 600px) {
 
 header {
-padding: 18px 5%;
+padding: 17px 5%;
 }
 
 .logo {
 font-size: 20px;
+}
+
+.feature-strip {
+grid-template-columns: 1fr;
+}
+
+.feature {
+border-bottom: 1px solid #eee;
+}
+
+.hero {
+padding: 75px 18px;
+}
+
+.hero h1 {
+font-size: 40px;
 }
 
 .products {
@@ -566,9 +840,15 @@ order: 2;
 order: 3;
 }
 
+.drop-banner {
+margin: 0 12px 40px;
 }
 
-/* EXTRA SMALL PHONES */
+}
+
+/* =========================
+EXTRA SMALL PHONES
+========================= */
 
 @media (max-width: 360px) {
 
@@ -583,47 +863,162 @@ grid-template-columns: 1fr;
 
 <body>
 
+<!-- =========================
+ANNOUNCEMENT
+========================= -->
+
+<div class="announcement">
+LIMITED PIECES • NEW DROPS • REVANTA MARKETS
+</div>
+
+
+<!-- =========================
+HEADER
+========================= -->
+
 <header>
 
 <div class="logo">
-REVENTA <span>MARKETS</span>
+REVANTA <span>MARKETS</span>
+</div>
+
+<div class="header-right">
+
+<div class="social-mini">
+
+<a href="https://instagram.com/revanta_markets" target="_blank">
+IG
+</a>
+
+<a href="https://www.tiktok.com/@revanta_markets" target="_blank">
+TT
+</a>
+
 </div>
 
 <button class="cart-button" onclick="toggleCart()">
 🛒 Cart (<span id="cart-count">0</span>)
 </button>
 
+</div>
+
 </header>
 
 
+<!-- =========================
+HERO
+========================= -->
+
 <section class="hero">
 
-<h1>PREMIUM STREETWEAR</h1>
+<div class="hero-content">
+
+<div class="hero-label">
+REVANTA MARKETS
+</div>
+
+<h1>WEAR YOUR STYLE.</h1>
 
 <p>
-Discover your next favorite piece.
+Curated streetwear pieces for people who want their style
+to stand out without trying too hard.
 </p>
 
+<div class="hero-buttons">
+
 <a href="#shop">
-SHOP COLLECTION
+SHOP THE COLLECTION
 </a>
+
+<a href="#socials">
+FOLLOW REVANTA
+</a>
+
+</div>
+
+<div class="hero-social">
+New pieces & updates on
+<a href="https://instagram.com/revanta_markets" target="_blank">
+Instagram
+</a>
+and
+<a href="https://www.tiktok.com/@revanta_markets" target="_blank">
+TikTok
+</a>
+</div>
+
+</div>
 
 </section>
 
+
+<!-- =========================
+FEATURE STRIP
+========================= -->
+
+<section class="feature-strip">
+
+<div class="feature">
+LIMITED STOCK
+<span>Small quantities available</span>
+</div>
+
+<div class="feature">
+SECURE CHECKOUT
+<span>Checkout powered by Square</span>
+</div>
+
+<div class="feature">
+CURATED STYLE
+<span>Pieces selected for the collection</span>
+</div>
+
+</section>
+
+
+<!-- =========================
+SHOP TITLE
+========================= -->
 
 <section class="section-title" id="shop">
 
-<h2>Our Collection</h2>
+<h2>THE COLLECTION</h2>
 
 <p>
-Premium beanies. Clean style. Reventa Markets.
+Limited pieces. Clean style. Revanta Markets.
 </p>
 
 </section>
 
 
+<!-- =========================
+PRODUCTS
+========================= -->
+
 <div class="products" id="products"></div>
 
+
+<!-- =========================
+DROP BANNER
+========================= -->
+
+<section class="drop-banner">
+
+<small>THE REVANTA DROP</small>
+
+<h2>WHEN IT'S GONE, IT'S GONE.</h2>
+
+<p>
+We keep quantities limited so every drop stays exclusive.
+Follow Revanta on Instagram and TikTok to see what's coming next.
+</p>
+
+</section>
+
+
+<!-- =========================
+CART
+========================= -->
 
 <section class="cart-section" id="cart-section">
 
@@ -648,34 +1043,55 @@ one product at a time.
 </section>
 
 
-<!-- TRUST SECTION -->
+<!-- =========================
+TRUST SECTION
+========================= -->
 
 <section class="trust-section">
 
-<h2>Why Shop Reventa Markets?</h2>
+<h2>WHY REVANTA?</h2>
 
 <div class="trust-grid">
 
 <div class="trust-item">
-<strong>🔥 Curated Streetwear</strong>
+
+<div class="icon">🔥</div>
+
+<strong>CURATED PIECES</strong>
+
 <p>
-Clean pieces selected for everyday streetwear style.
+Every item is selected to fit the clean,
+streetwear-focused Revanta aesthetic.
 </p>
+
 </div>
 
-<div class="trust-item">
-<strong>💳 Secure Checkout</strong>
-<p>
-Checkout is handled securely through Square.
-</p>
-</div>
 
 <div class="trust-item">
-<strong>📦 Limited Stock</strong>
+
+<div class="icon">💳</div>
+
+<strong>SECURE CHECKOUT</strong>
+
 <p>
-Many pieces are available in limited quantities.
-Once they're gone, they're gone.
+Payments are handled securely through Square
+for a simple checkout experience.
 </p>
+
+</div>
+
+
+<div class="trust-item">
+
+<div class="icon">📦</div>
+
+<strong>LIMITED QUANTITIES</strong>
+
+<p>
+Most pieces are intentionally kept in small
+quantities. Once they're gone, they're gone.
+</p>
+
 </div>
 
 </div>
@@ -683,20 +1099,81 @@ Once they're gone, they're gone.
 </section>
 
 
+<!-- =========================
+SOCIAL SECTION
+========================= -->
+
+<section class="social-section" id="socials">
+
+<h2>FOLLOW THE MOVEMENT</h2>
+
+<p>
+See new pieces, drops, and Revanta updates.
+</p>
+
+<div class="social-buttons">
+
+<a
+class="social-button"
+href="https://instagram.com/revanta_markets"
+target="_blank"
+>
+📸 Instagram @revanta_markets
+</a>
+
+<a
+class="social-button"
+href="https://www.tiktok.com/@revanta_markets"
+target="_blank"
+>
+🎵 TikTok @revanta_markets
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+
 <footer>
 
-<h3>REVENTA MARKETS</h3>
+<h3>REVANTA MARKETS</h3>
 
 <p>
 Premium Streetwear | Shop the Collection
 </p>
 
-<p>
-© 2026 Reventa Markets. All rights reserved.
+<div class="footer-socials">
+
+<a
+href="https://instagram.com/revanta_markets"
+target="_blank"
+>
+Instagram
+</a>
+
+<a
+href="https://www.tiktok.com/@revanta_markets"
+target="_blank"
+>
+TikTok
+</a>
+
+</div>
+
+<p class="copyright">
+© 2026 Revanta Markets. All rights reserved.
 </p>
 
 </footer>
 
+
+<!-- =========================
+TOAST
+========================= -->
 
 <div class="toast" id="toast">
 Added to cart!
@@ -783,7 +1260,7 @@ CART
 ===================================== */
 
 let cart = JSON.parse(
-localStorage.getItem("reventaCart")
+localStorage.getItem("revantaCart")
 ) || [];
 
 
@@ -794,7 +1271,7 @@ SAVE CART
 function saveCart() {
 
 localStorage.setItem(
-"reventaCart",
+"revantaCart",
 JSON.stringify(cart)
 );
 
@@ -1357,7 +1834,6 @@ Remove
 </button>
 
 `;
-
 
 cartItems.appendChild(row);
 
