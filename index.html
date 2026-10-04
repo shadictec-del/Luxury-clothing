@@ -247,6 +247,13 @@ font-size: 17px;
 margin-bottom: 8px;
 }
 
+.product-details {
+color: #666;
+font-size: 13px;
+margin-bottom: 10px;
+line-height: 1.5;
+}
+
 .price {
 font-size: 21px;
 font-weight: bold;
@@ -902,6 +909,46 @@ images: [
 "chanel%20back-2.jpeg",
 "chanel%20tag.jpeg"
 ]
+},
+
+/* ================================
+LULULEMON BLACK SET
+================================ */
+
+{
+id: 5,
+name: "Lululemon Black Set",
+price: 100,
+stock: 1,
+badge: "NEW",
+
+details: "Size 6 (Small) • Jacket + Shorts",
+
+squareLink: "https://square.link/u/JuVMVZzF",
+
+images: [
+"lulu%20lemon%20set.jpeg"
+]
+},
+
+/* ================================
+LULULEMON LIGHT BLUE SET
+================================ */
+
+{
+id: 6,
+name: "Lululemon Light Blue Set",
+price: 100,
+stock: 1,
+badge: "NEW",
+
+details: "Size 6 (Small) • Jacket + Shorts",
+
+squareLink: "https://square.link/u/UgSKvVG2",
+
+images: [
+"lulu%20lemon%20blueset.jpeg"
+]
 }
 
 ];
@@ -975,6 +1022,33 @@ ${product.badge}
 
 }
 
+
+/* IMAGE BUTTONS */
+
+let imageButtonsHTML = "";
+
+if (product.images.length > 1) {
+
+const buttonNames = ["Front", "Back", "Tag"];
+
+imageButtonsHTML = `
+<div class="image-buttons">
+
+${product.images.map((image, index) => `
+<button
+class="${index === 0 ? "active" : ""}"
+onclick="changeImage(${product.id}, ${index}, this)"
+>
+${buttonNames[index] || "Photo " + (index + 1)}
+</button>
+`).join("")}
+
+</div>
+`;
+
+}
+
+
 card.innerHTML = `
 
 ${badgeHTML}
@@ -990,34 +1064,19 @@ onerror="imageError(this)"
 
 </div>
 
-<div class="image-buttons">
-
-<button
-class="active"
-onclick="changeImage(${product.id}, 0, this)"
->
-Front
-</button>
-
-<button
-onclick="changeImage(${product.id}, 1, this)"
->
-Back
-</button>
-
-<button
-onclick="changeImage(${product.id}, 2, this)"
->
-Tag
-</button>
-
-</div>
+${imageButtonsHTML}
 
 <div class="product-info">
 
 <h3>
 ${product.name}
 </h3>
+
+${product.details ? `
+<div class="product-details">
+${product.details}
+</div>
+` : ""}
 
 <div class="price">
 $${product.price.toFixed(2)}
@@ -1082,6 +1141,8 @@ button
 
 const product =
 products.find(p => p.id === productId);
+
+if (!product) return;
 
 const image =
 document.getElementById(
