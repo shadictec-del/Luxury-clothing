@@ -1,1746 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Revanta Markets | Streetwear & More</title>
-
-<!-- =========================
-GOOGLE ANALYTICS
-========================= -->
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZCW2QKRNFB"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-dataLayer.push(arguments);
-}
-
+function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
-
 gtag('config', 'G-ZCW2QKRNFB');
 </script>
-
-<!-- =========================
-STYLES
-========================= -->
-
 <style>
-
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-
-html {
-scroll-behavior: smooth;
-}
-
-body {
-font-family: Arial, Helvetica, sans-serif;
-background: #f5f5f5;
-color: #111;
-}
-
-/* =========================
-HEADER
-========================= */
-
-header {
-background: #080808;
-color: white;
-padding: 20px 6%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: sticky;
-top: 0;
-z-index: 1000;
-}
-
-.logo {
-font-size: 25px;
-font-weight: 900;
-letter-spacing: 2px;
-}
-
-.logo span {
-color: #777;
-}
-
-.header-right {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.social-link {
-color: white;
-text-decoration: none;
-font-size: 12px;
-font-weight: bold;
-border: 1px solid #333;
-padding: 9px 11px;
-border-radius: 4px;
-}
-
-.social-link:hover {
-background: white;
-color: black;
-}
-
-.cart-button {
-background: white;
-color: black;
-padding: 12px 18px;
-border-radius: 4px;
-cursor: pointer;
-border: none;
-font-weight: bold;
-}
-
-.cart-button:hover {
-background: #ddd;
-}
-
-/* =========================
-HERO
-========================= */
-
-.hero {
-background: #111;
-color: white;
-text-align: center;
-padding: 80px 20px;
-}
-
-.hero h1 {
-font-size: clamp(35px, 6vw, 58px);
-margin-bottom: 15px;
-letter-spacing: 2px;
-}
-
-.hero p {
-color: #ccc;
-font-size: 17px;
-margin-bottom: 25px;
-}
-
-.hero a {
-display: inline-block;
-background: white;
-color: black;
-padding: 14px 28px;
-text-decoration: none;
-font-weight: bold;
-border-radius: 3px;
-}
-
-.hero a:hover {
-background: #ddd;
-}
-
-/* =========================
-SECTION TITLE
-========================= */
-
-.section-title {
-text-align: center;
-padding: 45px 15px 15px;
-}
-
-.section-title h2 {
-font-size: 30px;
-margin-bottom: 10px;
-}
-
-.section-title p {
-color: #666;
-}
-
-/* =========================
-PRODUCTS
-========================= */
-
-.products {
-display: grid;
-grid-template-columns: repeat(4, minmax(0, 1fr));
-gap: 22px;
-padding: 30px 5% 60px;
-max-width: 1500px;
-margin: auto;
-}
-
-.product {
-background: white;
-border-radius: 7px;
-overflow: hidden;
-box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-padding-bottom: 20px;
-position: relative;
-transition: 0.2s;
-}
-
-.product:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-}
-
-/* =========================
-BADGE
-========================= */
-
-.product-badge {
-position: absolute;
-top: 12px;
-left: 12px;
-background: #111;
-color: white;
-padding: 6px 9px;
-font-size: 11px;
-font-weight: bold;
-border-radius: 3px;
-z-index: 5;
-}
-
-/* =========================
-IMAGE
-========================= */
-
-.product-image {
-width: 100%;
-aspect-ratio: 1 / 1;
-background: #eee;
-overflow: hidden;
-}
-
-.product-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-transition: 0.3s;
-}
-
-.product:hover .product-image img {
-transform: scale(1.02);
-}
-
-/* =========================
-IMAGE BUTTONS
-========================= */
-
-.image-buttons {
-display: flex;
-gap: 5px;
-padding: 12px 12px 0;
-}
-
-.image-buttons button {
-flex: 1;
-padding: 9px 3px;
-border: 1px solid #ddd;
-background: white;
-cursor: pointer;
-font-size: 12px;
-border-radius: 3px;
-}
-
-.image-buttons button.active {
-background: #111;
-color: white;
-border-color: #111;
-}
-
-/* =========================
-PRODUCT INFO
-========================= */
-
-.product-info {
-padding: 15px;
-}
-
-.product-info h3 {
-font-size: 17px;
-margin-bottom: 8px;
-}
-
-.product-details {
-color: #666;
-font-size: 13px;
-margin-bottom: 10px;
-line-height: 1.5;
-}
-
-.price {
-font-size: 21px;
-font-weight: bold;
-margin-bottom: 10px;
-}
-
-/* =========================
-STOCK
-========================= */
-
-.stock {
-font-size: 14px;
-font-weight: bold;
-margin-bottom: 12px;
-}
-
-.stock.available {
-color: #222;
-}
-
-.stock.low {
-color: #b36b00;
-}
-
-.stock.sold-out {
-color: #c00000;
-}
-
-/* =========================
-BUTTONS
-========================= */
-
-.add-button,
-.square-button {
-width: 100%;
-padding: 13px;
-border: none;
-cursor: pointer;
-font-weight: bold;
-border-radius: 3px;
-margin-top: 8px;
-}
-
-.add-button {
-background: #111;
-color: white;
-}
-
-.add-button:hover {
-background: #333;
-}
-
-.add-button:disabled {
-background: #aaa;
-cursor: not-allowed;
-}
-
-.square-button {
-background: #006aff;
-color: white;
-}
-
-.square-button:hover {
-background: #0053cc;
-}
-
-.square-button:disabled {
-background: #aaa;
-cursor: not-allowed;
-}
-
-/* =========================
-CART
-========================= */
-
-.cart-section {
-background: white;
-max-width: 900px;
-margin: 0 auto 60px;
-padding: 25px;
-border-radius: 6px;
-display: none;
-}
-
-.cart-section h2 {
-margin-bottom: 20px;
-}
-
-.cart-item {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 15px;
-padding: 15px 0;
-border-bottom: 1px solid #ddd;
-}
-
-.cart-item-info {
-flex: 1;
-}
-
-.cart-item-name {
-font-weight: bold;
-margin-bottom: 5px;
-}
-
-.cart-item-price {
-color: #555;
-}
-
-.quantity-controls {
-display: flex;
-align-items: center;
-gap: 8px;
-}
-
-.quantity-button {
-width: 32px;
-height: 32px;
-border: none;
-background: #111;
-color: white;
-cursor: pointer;
-border-radius: 3px;
-font-weight: bold;
-}
-
-.quantity {
-min-width: 25px;
-text-align: center;
-font-weight: bold;
-}
-
-.remove-button {
-background: #eee;
-border: none;
-padding: 8px 12px;
-cursor: pointer;
-border-radius: 3px;
-}
-
-.cart-total {
-font-size: 22px;
-font-weight: bold;
-margin: 20px 0;
-}
-
-.checkout-button {
-display: block;
-width: 100%;
-background: #006aff;
-color: white;
-border: none;
-padding: 15px;
-font-size: 16px;
-font-weight: bold;
-cursor: pointer;
-border-radius: 3px;
-}
-
-.checkout-button:hover {
-background: #0053cc;
-}
-
-.empty-cart {
-color: #777;
-margin-bottom: 10px;
-}
-
-.cart-note {
-color: #666;
-font-size: 13px;
-margin-top: 12px;
-line-height: 1.5;
-}
-
-/* =========================
-WHY REVANTA
-========================= */
-
-.trust-section {
-background: white;
-padding: 50px 20px;
-text-align: center;
-}
-
-.trust-section h2 {
-margin-bottom: 25px;
-}
-
-.trust-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 20px;
-max-width: 950px;
-margin: auto;
-}
-
-.trust-item {
-padding: 22px;
-border: 1px solid #eee;
-border-radius: 6px;
-}
-
-.trust-item strong {
-display: block;
-margin-bottom: 8px;
-}
-
-.trust-item p {
-color: #666;
-font-size: 14px;
-line-height: 1.5;
-}
-
-/* =========================
-SOCIALS
-========================= */
-
-.social-section {
-text-align: center;
-padding: 50px 20px;
-}
-
-.social-section h2 {
-margin-bottom: 10px;
-}
-
-.social-section p {
-color: #666;
-margin-bottom: 20px;
-}
-
-.social-buttons {
-display: flex;
-justify-content: center;
-gap: 10px;
-flex-wrap: wrap;
-}
-
-.social-button {
-background: #111;
-color: white;
-text-decoration: none;
-padding: 12px 20px;
-border-radius: 4px;
-font-weight: bold;
-font-size: 13px;
-}
-
-.social-button:hover {
-background: #333;
-}
-
-/* =========================
-FOOTER
-========================= */
-
-footer {
-background: #080808;
-color: white;
-text-align: center;
-padding: 35px 15px;
-}
-
-footer p {
-color: #aaa;
-margin-top: 10px;
-font-size: 14px;
-}
-
-/* =========================
-TOAST
-========================= */
-
-.toast {
-position: fixed;
-bottom: 25px;
-left: 50%;
-transform: translateX(-50%) translateY(100px);
-background: #111;
-color: white;
-padding: 13px 20px;
-border-radius: 5px;
-font-weight: bold;
-font-size: 14px;
-opacity: 0;
-transition: 0.3s;
-z-index: 2000;
-}
-
-.toast.show {
-opacity: 1;
-transform: translateX(-50%) translateY(0);
-}
-
-/* =========================
-TABLET
-========================= */
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #111; }
+header { background: #080808; color: white; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+.logo { font-size: 25px; font-weight: 900; letter-spacing: 2px; }
+.logo span { color: #777; }
+.header-right { display: flex; align-items: center; gap: 10px; }
+.social-link { color: white; text-decoration: none; font-size: 12px; font-weight: bold; border: 1px solid #333; padding: 9px 11px; border-radius: 4px; }
+.social-link:hover { background: white; color: black; }
+.cart-button { background: white; color: black; padding: 12px 18px; border-radius: 4px; cursor: pointer; border: none; font-weight: bold; }
+.cart-button:hover { background: #ddd; }
+.hero { background: #111; color: white; text-align: center; padding: 80px 20px; }
+.hero h1 { font-size: clamp(35px, 6vw, 58px); margin-bottom: 15px; letter-spacing: 2px; }
+.hero p { color: #ccc; font-size: 17px; margin-bottom: 25px; }
+.hero a { display: inline-block; background: white; color: black; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 3px; }
+.hero a:hover { background: #ddd; }
+.section-title { text-align: center; padding: 45px 15px 15px; }
+.section-title h2 { font-size: 30px; margin-bottom: 10px; }
+.section-title p { color: #666; }
+.products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 30px 5% 60px; max-width: 1500px; margin: auto; }
+.product { background: white; border-radius: 7px; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,0.07); padding-bottom: 20px; position: relative; transition: 0.2s; }
+.product:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.product-badge { position: absolute; top: 12px; left: 12px; background: #111; color: white; padding: 6px 9px; font-size: 11px; font-weight: bold; border-radius: 3px; z-index: 5; }
+.product-image { width: 100%; aspect-ratio: 1 / 1; background: #eee; overflow: hidden; }
+.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.3s; }
+.product:hover .product-image img { transform: scale(1.02); }
+.image-buttons { display: flex; gap: 5px; padding: 12px 12px 0; }
+.image-buttons button { flex: 1; padding: 9px 3px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 12px; border-radius: 3px; }
+.image-buttons button.active { background: #111; color: white; border-color: #111; }
+.product-info { padding: 15px; }
+.product-info h3 { font-size: 17px; margin-bottom: 8px; }
+.product-details { color: #666; font-size: 13px; margin-bottom: 10px; line-height: 1.5; }
+.price { font-size: 21px; font-weight: bold; margin-bottom: 10px; }
+.stock { font-size: 14px; font-weight: bold; margin-bottom: 12px; }
+.stock.available { color: #222; }
+.stock.low { color: #b36b00; }
+.stock.sold-out { color: #c00000; }
+.add-button, .square-button { width: 100%; padding: 13px; border: none; cursor: pointer; font-weight: bold; border-radius: 3px; margin-top: 8px; }
+.add-button { background: #111; color: white; }
+.add-button:hover { background: #333; }
+.add-button:disabled, .square-button:disabled { background: #aaa; cursor: not-allowed; }
+.square-button { background: #006aff; color: white; }
+.square-button:hover { background: #0053cc; }
+.cart-section { background: white; max-width: 900px; margin: 0 auto 60px; padding: 25px; border-radius: 6px; display: none; }
+.cart-section h2 { margin-bottom: 20px; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid #ddd; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: bold; margin-bottom: 5px; }
+.cart-item-price { color: #555; }
+.quantity-controls { display: flex; align-items: center; gap: 8px; }
+.quantity-button { width: 32px; height: 32px; border: none; background: #111; color: white; cursor: pointer; border-radius: 3px; font-weight: bold; }
+.quantity { min-width: 25px; text-align: center; font-weight: bold; }
+.remove-button { background: #eee; border: none; padding: 8px 12px; cursor: pointer; border-radius: 3px; }
+.cart-total { font-size: 22px; font-weight: bold; margin: 20px 0; }
+.checkout-button { display: block; width: 100%; background: #006aff; color: white; border: none; padding: 15px; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 3px; }
+.checkout-button:hover { background: #0053cc; }
+.empty-cart { color: #777; margin-bottom: 10px; }
+.cart-note { color: #666; font-size: 13px; margin-top: 12px; line-height: 1.5; }
+.trust-section { background: white; padding: 50px 20px; text-align: center; }
+.trust-section h2 { margin-bottom: 25px; }
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 950px; margin: auto; }
+.trust-item { padding: 22px; border: 1px solid #eee; border-radius: 6px; }
+.trust-item strong { display: block; margin-bottom: 8px; }
+.trust-item p { color: #666; font-size: 14px; line-height: 1.5; }
+.social-section { text-align: center; padding: 50px 20px; }
+.social-section h2 { margin-bottom: 10px; }
+.social-section p { color: #666; margin-bottom: 20px; }
+.social-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.social-button { background: #111; color: white; text-decoration: none; padding: 12px 20px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.social-button:hover { background: #333; }
+footer { background: #080808; color: white; text-align: center; padding: 35px 15px; }
+footer p { color: #aaa; margin-top: 10px; font-size: 14px; }
+.toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #111; color: white; padding: 13px 20px; border-radius: 5px; font-weight: bold; font-size: 14px; opacity: 0; transition: 0.3s; z-index: 2000; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 @media (max-width: 1000px) {
-
-.products {
-grid-template-columns: repeat(2, minmax(0, 1fr));
+.products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.trust-grid { grid-template-columns: 1fr; max-width: 500px; }
 }
-
-.trust-grid {
-grid-template-columns: 1fr;
-max-width: 500px;
-}
-
-}
-
-/* =========================
-PHONE
-========================= */
-
 @media (max-width: 600px) {
-
-header {
-padding: 18px 5%;
+header { padding: 18px 5%; }
+.logo { font-size: 20px; }
+.social-link { display: none; }
+.hero { padding: 70px 20px; }
+.products { gap: 12px; padding: 20px 12px 40px; }
+.product-info { padding: 10px; }
+.product-info h3 { font-size: 14px; }
+.price { font-size: 18px; }
+.image-buttons { padding: 8px 6px 0; gap: 3px; }
+.image-buttons button { font-size: 11px; padding: 8px 2px; }
+.cart-item { flex-wrap: wrap; }
+.quantity-controls { order: 2; }
+.remove-button { order: 3; }
 }
-
-.logo {
-font-size: 20px;
-}
-
-.social-link {
-display: none;
-}
-
-.hero {
-padding: 70px 20px;
-}
-
-.products {
-gap: 12px;
-padding: 20px 12px 40px;
-}
-
-.product-info {
-padding: 10px;
-}
-
-.product-info h3 {
-font-size: 14px;
-}
-
-.price {
-font-size: 18px;
-}
-
-.image-buttons {
-padding: 8px 6px 0;
-gap: 3px;
-}
-
-.image-buttons button {
-font-size: 11px;
-padding: 8px 2px;
-}
-
-.cart-item {
-flex-wrap: wrap;
-}
-
-.quantity-controls {
-order: 2;
-}
-
-.remove-button {
-order: 3;
-}
-
-}
-
 @media (max-width: 360px) {
-
-.products {
-grid-template-columns: 1fr;
+.products { grid-template-columns: 1fr; }
 }
-
-}
-
 </style>
 </head>
-
 <body>
-
-<!-- =========================
-HEADER
-========================= -->
-
 <header>
-
-<div class="logo">
-REVANTA <span>MARKETS</span>
-</div>
-
+<div class="logo">REVANTA <span>MARKETS</span></div>
 <div class="header-right">
-
-<a
-class="social-link"
-href="https://instagram.com/revanta_markets"
-target="_blank"
->
-Instagram
-</a>
-
-<a
-class="social-link"
-href="https://www.tiktok.com/@revanta_markets"
-target="_blank"
->
-TikTok
-</a>
-
-<button class="cart-button" onclick="toggleCart()">
-🛒 Cart (<span id="cart-count">0</span>)
-</button>
-
+<a class="social-link" href="https://instagram.com/revanta_markets" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="social-link" href="https://www.tiktok.com/@revanta_markets" target="_blank" rel="noopener noreferrer">TikTok</a>
+<button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
 </div>
-
 </header>
 
-
-<!-- =========================
-HERO
-========================= -->
-
 <section class="hero">
-
 <h1>REVANTA MARKETS</h1>
-
-<p>
-Streetwear, accessories & more.
-</p>
-
-<a href="#shop">
-SHOP COLLECTION
-</a>
-
+<p>Streetwear, accessories &amp; more.</p>
+<a href="#shop">SHOP COLLECTION</a>
 </section>
-
-
-<!-- =========================
-PRODUCTS TITLE
-========================= -->
 
 <section class="section-title" id="shop">
-
 <h2>OUR COLLECTION</h2>
-
-<p>
-Check out what's currently available.
-</p>
-
+<p>Check out what's currently available.</p>
 </section>
-
-
-<!-- =========================
-PRODUCTS
-========================= -->
-
 <div class="products" id="products"></div>
 
-
-<!-- =========================
-CART
-========================= -->
-
 <section class="cart-section" id="cart-section">
-
 <h2>Your Shopping Cart</h2>
-
 <div id="cart-items"></div>
-
-<div class="cart-total">
-Total: $<span id="cart-total">0.00</span>
-</div>
-
-<button class="checkout-button" onclick="checkout()">
-Continue to Square Checkout
-</button>
-
-<p class="cart-note">
-Square checkout links are currently set up individually.
-For multiple items, checkout is completed one product at a time.
-</p>
-
+<div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+<button class="checkout-button" onclick="checkout()">Continue to Square Checkout</button>
+<p class="cart-note">Square checkout links are set up individually. Multiple products in your cart must be checked out one product at a time.</p>
 </section>
-
-
-<!-- =========================
-WHY REVANTA
-========================= -->
 
 <section class="trust-section">
-
 <h2>WHY REVANTA MARKETS?</h2>
-
 <div class="trust-grid">
-
-<div class="trust-item">
-
-<strong>🔥 GREAT FINDS</strong>
-
-<p>
-New products will be added as the collection grows.
-</p>
-
+<div class="trust-item"><strong>🔥 GREAT FINDS</strong><p>New products will be added as the collection grows.</p></div>
+<div class="trust-item"><strong>💳 SECURE CHECKOUT</strong><p>Payments are handled through Square.</p></div>
+<div class="trust-item"><strong>📦 LIMITED STOCK</strong><p>Stock is limited while supplies last.</p></div>
 </div>
-
-
-<div class="trust-item">
-
-<strong>💳 SECURE CHECKOUT</strong>
-
-<p>
-Payments are handled through Square.
-</p>
-
-</div>
-
-
-<div class="trust-item">
-
-<strong>📦 LIMITED STOCK</strong>
-
-<p>
-Stock is limited while supplies last.
-</p>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- =========================
-SOCIALS
-========================= -->
 
 <section class="social-section">
-
 <h2>FOLLOW REVANTA</h2>
-
-<p>
-Follow us for new products, restocks and updates.
-</p>
-
+<p>Follow us for new products, restocks and updates.</p>
 <div class="social-buttons">
-
-<a
-class="social-button"
-href="https://instagram.com/revanta_markets"
-target="_blank"
->
-Instagram @revanta_markets
-</a>
-
-<a
-class="social-button"
-href="https://www.tiktok.com/@revanta_markets"
-target="_blank"
->
-TikTok @revanta_markets
-</a>
-
+<a class="social-button" href="https://instagram.com/revanta_markets" target="_blank" rel="noopener noreferrer">Instagram @revanta_markets</a>
+<a class="social-button" href="https://www.tiktok.com/@revanta_markets" target="_blank" rel="noopener noreferrer">TikTok @revanta_markets</a>
 </div>
-
 </section>
 
-
-<!-- =========================
-FOOTER
-========================= -->
-
 <footer>
-
 <h3>REVANTA MARKETS</h3>
-
-<p>
-Streetwear • Accessories • More
-</p>
-
-<p>
-© 2026 Revanta Markets. All rights reserved.
-</p>
-
+<p>Streetwear • Accessories • More</p>
+<p>© 2026 Revanta Markets. All rights reserved.</p>
 </footer>
-
-
-<!-- =========================
-TOAST
-========================= -->
-
-<div class="toast" id="toast">
-Added to cart!
-</div>
-
+<div class="toast" id="toast">Added to cart!</div>
 
 <script>
-
-/* =====================================
-PRODUCT INFORMATION
-===================================== */
-
 const products = [
-
 {
 id: 1,
 name: "Supreme Gray Camo Beanie",
 price: 35,
-stock: 1,
-badge: "LOW STOCK",
-
+stock: 0,
+badge: "SOLD OUT",
 squareLink: "https://square.link/u/Afvnq1eh",
-
 images: [
 "camo%20supreme%20front.jpeg",
 "camo%20supreme%20back.jpeg",
 "camo%20supreme%20tag.jpeg"
 ]
 },
-
 {
 id: 2,
 name: "Supreme White Beanie",
 price: 35,
 stock: 1,
 badge: "LOW STOCK",
-
 squareLink: "https://square.link/u/aULKewWl",
-
 images: [
 "white%20supreme%20front.jpeg",
 "white%20supreme%20back.jpeg",
 "white%20supreme%20tag.jpeg"
 ]
 },
-
 {
 id: 3,
 name: "Supreme Black Beanie",
 price: 35,
 stock: 0,
 badge: "OUT OF STOCK",
-
 squareLink: "https://square.link/u/Jt2wcyb5",
-
 images: [
 "black%20suprem%20front.jpeg",
 "black%20supreme%20back.jpeg",
 "black%20supreme%20tag.jpeg"
 ]
 },
-
 {
 id: 4,
 name: "Chanel Black & White Beanie",
 price: 50,
-stock: 2,
-badge: "LIMITED",
-
+stock: 0,
+badge: "SOLD OUT",
 squareLink: "https://square.link/u/OGm0l2JN",
-
 images: [
 "chanel%20fro%202.jpeg",
 "chanel%20back-2.jpeg",
 "chanel%20tag.jpeg"
 ]
 },
-
-/* ================================
-LULULEMON BLACK SET
-================================ */
-
 {
 id: 5,
 name: "Lululemon Black Set",
 price: 115,
 stock: 0,
 badge: "SOLD OUT",
-
 details: "Size 6 (Small) • Jacket + Shorts",
-
 squareLink: "https://square.link/u/JuVMVZzF",
-
-images: [
-"lulu%20lemon%20set.jpeg"
-]
+images: ["lulu%20lemon%20set.jpeg"]
 },
-
-/* ================================
-LULULEMON LIGHT BLUE SET
-================================ */
-
 {
 id: 6,
 name: "Lululemon Light Blue Set",
 price: 115,
 stock: 1,
 badge: "NEW",
-
 details: "Size 6 (Small) • Jacket + Shorts",
-
 squareLink: "https://square.link/u/UgSKvVG2",
-
-images: [
-"lulu%20lemon%20blueset.jpeg"
-]
+images: ["lulu%20lemon%20blueset.jpeg"]
+},
+{
+id: 7,
+name: "Supreme Black Set",
+price: 120,
+stock: 1,
+badge: "1 LEFT",
+details: "Size XL",
+squareLink: "https://square.link/u/gNxjKmR4",
+images: ["Supreme%20black%20set.png"]
+},
+{
+id: 8,
+name: "Black Chrome Hearts Socks",
+price: 25,
+stock: 2,
+badge: "LIMITED",
+details: "$25 per pair",
+squareLink: "https://square.link/u/5KX6Vry8",
+images: ["black%20chrome%20heart%20sock.png"]
+},
+{
+id: 9,
+name: "White Chrome Hearts Socks",
+price: 25,
+stock: 2,
+badge: "LIMITED",
+details: "$25 per pair",
+squareLink: "https://square.link/u/M9dQy9zj",
+images: ["white%20chrome%20heart%20socks.png"]
+},
+{
+id: 10,
+name: "Supreme x Umbro Navy Blue Set",
+price: 150,
+stock: 1,
+badge: "1 LEFT",
+details: "Size Large",
+squareLink: "https://square.link/u/FVYDrn0N",
+images: ["supreme%20x%20umbro%20navy%20blue%20set.png"]
 }
-
 ];
 
-
-/* =====================================
-CART
-===================================== */
-
-let cart = JSON.parse(
-localStorage.getItem("revantaCart")
-) || [];
-
-
-/* =====================================
-SAVE CART
-===================================== */
+let cart = [];
+try {
+const savedCart = JSON.parse(localStorage.getItem("revantaCart") || "[]");
+if (Array.isArray(savedCart)) {
+cart = savedCart.filter(item =>
+products.some(product => product.id === item.id && product.stock > 0) &&
+Number.isInteger(item.quantity) &&
+item.quantity > 0
+);
+}
+} catch (error) {
+cart = [];
+}
 
 function saveCart() {
-
-localStorage.setItem(
-"revantaCart",
-JSON.stringify(cart)
-);
-
+localStorage.setItem("revantaCart", JSON.stringify(cart));
 }
-
-
-/* =====================================
-GET QUANTITY
-===================================== */
 
 function getCartQuantity(productId) {
-
-const item =
-cart.find(item => item.id === productId);
-
-if (!item) {
-return 0;
+const item = cart.find(item => item.id === productId);
+return item ? item.quantity : 0;
 }
 
-return item.quantity;
-
-}
-
-
-/* =====================================
-DISPLAY PRODUCTS
-===================================== */
-
-const productsContainer =
-document.getElementById("products");
-
+const productsContainer = document.getElementById("products");
 
 products.forEach(product => {
-
-const card =
-document.createElement("div");
-
+const card = document.createElement("div");
 card.className = "product";
-
-let badgeHTML = "";
-
-if (product.badge) {
-
-badgeHTML = `
-<div class="product-badge">
-${product.badge}
-</div>
-`;
-
-}
-
-
-/* IMAGE BUTTONS */
+const badgeHTML = product.badge ? `<div class="product-badge">${product.badge}</div>` : "";
 
 let imageButtonsHTML = "";
-
 if (product.images.length > 1) {
-
 const buttonNames = ["Front", "Back", "Tag"];
-
 imageButtonsHTML = `
 <div class="image-buttons">
-
 ${product.images.map((image, index) => `
-<button
-class="${index === 0 ? "active" : ""}"
-onclick="changeImage(${product.id}, ${index}, this)"
->
+<button type="button" class="${index === 0 ? "active" : ""}" onclick="changeImage(${product.id}, ${index}, this)">
 ${buttonNames[index] || "Photo " + (index + 1)}
 </button>
 `).join("")}
-
-</div>
-`;
-
+</div>`;
 }
-
 
 card.innerHTML = `
-
 ${badgeHTML}
-
 <div class="product-image">
-
-<img
-id="image-${product.id}"
-src="${product.images[0]}"
-alt="${product.name}"
-onerror="imageError(this)"
->
-
+<img id="image-${product.id}" src="${product.images[0]}" alt="${product.name}" onerror="imageError(this)">
 </div>
-
 ${imageButtonsHTML}
-
 <div class="product-info">
-
-<h3>
-${product.name}
-</h3>
-
-${product.details ? `
-<div class="product-details">
-${product.details}
-</div>
-` : ""}
-
-<div class="price">
-$${product.price.toFixed(2)}
-</div>
-
-<div
-class="stock available"
-id="stock-${product.id}"
->
-${product.stock} left
-</div>
-
-<button
-class="add-button"
-id="add-${product.id}"
-onclick="addToCart(${product.id})"
->
-ADD TO CART
-</button>
-
-<button
-class="square-button"
-id="buy-${product.id}"
-onclick="buyNow(${product.id})"
->
-BUY NOW WITH SQUARE
-</button>
-
-</div>
-
-`;
-
+<h3>${product.name}</h3>
+${product.details ? `<div class="product-details">${product.details}</div>` : ""}
+<div class="price">$${product.price.toFixed(2)}</div>
+<div class="stock" id="stock-${product.id}"></div>
+<button class="add-button" id="add-${product.id}" onclick="addToCart(${product.id})">ADD TO CART</button>
+<button class="square-button" id="buy-${product.id}" onclick="buyNow(${product.id})">BUY NOW WITH SQUARE</button>
+</div>`;
 productsContainer.appendChild(card);
-
 });
-
-
-/* =====================================
-IMAGE ERROR
-===================================== */
 
 function imageError(image) {
-
 image.onerror = null;
-
-image.alt = "Image unavailable";
-
-image.src = "";
-
+image.alt = "Image unavailable. Check the filename in GitHub.";
+image.style.objectFit = "contain";
+image.removeAttribute("src");
 }
 
-
-/* =====================================
-CHANGE IMAGE
-===================================== */
-
-function changeImage(
-productId,
-imageIndex,
-button
-) {
-
-const product =
-products.find(p => p.id === productId);
-
+function changeImage(productId, imageIndex, button) {
+const product = products.find(p => p.id === productId);
 if (!product) return;
-
-const image =
-document.getElementById(
-`image-${productId}`
-);
-
-image.onerror = function() {
-
-this.onerror = null;
-
-this.alt = "Image unavailable";
-
-this.src = "";
-
-};
-
-image.src =
-product.images[imageIndex];
-
-
-const buttons =
-button.parentElement
-.querySelectorAll("button");
-
-buttons.forEach(btn => {
-
-btn.classList.remove("active");
-
-});
-
+const image = document.getElementById(`image-${productId}`);
+image.onerror = function() { imageError(this); };
+image.src = product.images[imageIndex];
+button.parentElement.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
 button.classList.add("active");
-
 }
-
-
-/* =====================================
-UPDATE STOCK
-===================================== */
 
 function updateStockDisplay(productId) {
+const product = products.find(p => p.id === productId);
+if (!product) return;
+const quantityInCart = getCartQuantity(productId);
+const remaining = Math.max(0, product.stock - quantityInCart);
+const stockElement = document.getElementById(`stock-${productId}`);
+const addButton = document.getElementById(`add-${productId}`);
+const buyButton = document.getElementById(`buy-${productId}`);
 
-const product =
-products.find(p => p.id === productId);
-
-const quantityInCart =
-getCartQuantity(productId);
-
-const remaining =
-product.stock - quantityInCart;
-
-const stockElement =
-document.getElementById(
-`stock-${productId}`
-);
-
-const addButton =
-document.getElementById(
-`add-${productId}`
-);
-
-const buyButton =
-document.getElementById(
-`buy-${productId}`
-);
-
-
-stockElement.classList.remove(
-"available",
-"low",
-"sold-out"
-);
-
-
+stockElement.classList.remove("available", "low", "sold-out");
 if (remaining <= 0) {
-
-stockElement.textContent =
-"SOLD OUT";
-
-stockElement.classList.add(
-"sold-out"
-);
-
+stockElement.textContent = "SOLD OUT";
+stockElement.classList.add("sold-out");
 addButton.disabled = true;
-
-addButton.textContent =
-"SOLD OUT";
-
-}
-
-else if (remaining === 1) {
-
-stockElement.textContent =
-"1 left";
-
-stockElement.classList.add(
-"low"
-);
-
+addButton.textContent = "SOLD OUT";
+} else {
+stockElement.textContent = `${remaining} left`;
+stockElement.classList.add(remaining === 1 ? "low" : "available");
 addButton.disabled = false;
-
-addButton.textContent =
-"ADD TO CART";
-
+addButton.textContent = "ADD TO CART";
 }
-
-else {
-
-stockElement.textContent =
-`${remaining} left`;
-
-stockElement.classList.add(
-"available"
-);
-
-addButton.disabled = false;
-
-addButton.textContent =
-"ADD TO CART";
-
+buyButton.disabled = remaining <= 0;
 }
-
-buyButton.disabled =
-remaining <= 0;
-
-}
-
-
-/* =====================================
-UPDATE ALL STOCK
-===================================== */
 
 function updateAllStockDisplays() {
-
-products.forEach(product => {
-
-updateStockDisplay(product.id);
-
-});
-
+products.forEach(product => updateStockDisplay(product.id));
 }
 
-
-/* =====================================
-TOAST
-===================================== */
-
+let toastTimeout;
 function showToast(message) {
-
-const toast =
-document.getElementById("toast");
-
+const toast = document.getElementById("toast");
 toast.textContent = message;
-
 toast.classList.add("show");
-
-setTimeout(() => {
-
-toast.classList.remove("show");
-
-}, 2000);
-
+clearTimeout(toastTimeout);
+toastTimeout = setTimeout(() => toast.classList.remove("show"), 2000);
 }
-
-
-/* =====================================
-ADD TO CART
-===================================== */
 
 function addToCart(productId) {
-
-const product =
-products.find(p => p.id === productId);
-
+const product = products.find(p => p.id === productId);
 if (!product) return;
-
-
-const currentQuantity =
-getCartQuantity(productId);
-
-
-if (currentQuantity >= product.stock) {
-
-showToast(
-`Only ${product.stock} available.`
-);
-
+if (getCartQuantity(productId) >= product.stock) {
+showToast(`Only ${product.stock} available.`);
 return;
-
 }
-
-
-const existingItem =
-cart.find(item => item.id === productId);
-
-
+const existingItem = cart.find(item => item.id === productId);
 if (existingItem) {
-
 existingItem.quantity++;
-
+} else {
+cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
 }
-
-else {
-
-cart.push({
-
-id: product.id,
-
-name: product.name,
-
-price: product.price,
-
-quantity: 1
-
-});
-
-}
-
-
 saveCart();
-
 updateCart();
-
 updateAllStockDisplays();
-
-
-showToast(
-product.name + " added to cart!"
-);
-
+showToast(product.name + " added to cart!");
 }
-
-
-/* =====================================
-REMOVE PRODUCT
-===================================== */
 
 function removeFromCart(productId) {
-
-cart =
-cart.filter(item => item.id !== productId);
-
+cart = cart.filter(item => item.id !== productId);
 saveCart();
-
 updateCart();
-
 updateAllStockDisplays();
-
 }
 
-
-/* =====================================
-CHANGE QUANTITY
-===================================== */
-
-function changeQuantity(
-productId,
-change
-) {
-
-const product =
-products.find(p => p.id === productId);
-
-const item =
-cart.find(item => item.id === productId);
-
+function changeQuantity(productId, change) {
+const product = products.find(p => p.id === productId);
+const item = cart.find(item => item.id === productId);
 if (!product || !item) return;
-
-
-const newQuantity =
-item.quantity + change;
-
-
+const newQuantity = item.quantity + change;
 if (newQuantity <= 0) {
-
 removeFromCart(productId);
-
 return;
-
 }
-
-
 if (newQuantity > product.stock) {
-
-showToast(
-`Only ${product.stock} available.`
-);
-
+showToast(`Only ${product.stock} available.`);
 return;
-
 }
-
-
-item.quantity =
-newQuantity;
-
-
+item.quantity = newQuantity;
 saveCart();
-
 updateCart();
-
 updateAllStockDisplays();
-
 }
-
-
-/* =====================================
-UPDATE CART
-===================================== */
 
 function updateCart() {
-
 let totalItems = 0;
-
 let totalPrice = 0;
-
-
 cart.forEach(item => {
-
 totalItems += item.quantity;
-
-totalPrice +=
-item.price * item.quantity;
-
+totalPrice += item.price * item.quantity;
 });
-
-
-document.getElementById(
-"cart-count"
-).textContent = totalItems;
-
-
-const cartItems =
-document.getElementById(
-"cart-items"
-);
-
+document.getElementById("cart-count").textContent = totalItems;
+const cartItems = document.getElementById("cart-items");
 cartItems.innerHTML = "";
-
-
 if (cart.length === 0) {
-
-cartItems.innerHTML =
-'<p class="empty-cart">Your cart is empty.</p>';
-
+cartItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
 }
-
-
 cart.forEach(item => {
-
-const row =
-document.createElement("div");
-
-row.className =
-"cart-item";
-
-
+const row = document.createElement("div");
+row.className = "cart-item";
 row.innerHTML = `
-
 <div class="cart-item-info">
-
-<div class="cart-item-name">
-${item.name}
+<div class="cart-item-name">${item.name}</div>
+<div class="cart-item-price">$${item.price.toFixed(2)} each</div>
 </div>
-
-<div class="cart-item-price">
-$${item.price.toFixed(2)} each
-</div>
-
-</div>
-
 <div class="quantity-controls">
-
-<button
-class="quantity-button"
-onclick="changeQuantity(${item.id}, -1)"
->
-−
-</button>
-
-<span class="quantity">
-${item.quantity}
-</span>
-
-<button
-class="quantity-button"
-onclick="changeQuantity(${item.id}, 1)"
->
-+
-</button>
-
+<button class="quantity-button" onclick="changeQuantity(${item.id}, -1)">−</button>
+<span class="quantity">${item.quantity}</span>
+<button class="quantity-button" onclick="changeQuantity(${item.id}, 1)">+</button>
 </div>
-
-<button
-class="remove-button"
-onclick="removeFromCart(${item.id})"
->
-Remove
-</button>
-
-`;
-
+<button class="remove-button" onclick="removeFromCart(${item.id})">Remove</button>`;
 cartItems.appendChild(row);
-
 });
-
-
-document.getElementById(
-"cart-total"
-).textContent =
-totalPrice.toFixed(2);
-
+document.getElementById("cart-total").textContent = totalPrice.toFixed(2);
 }
-
-
-/* =====================================
-BUY NOW
-===================================== */
 
 function buyNow(productId) {
-
-const product =
-products.find(p => p.id === productId);
-
+const product = products.find(p => p.id === productId);
 if (!product) return;
-
-
-const currentQuantity =
-getCartQuantity(productId);
-
-
-if (currentQuantity >= product.stock) {
-
-showToast(
-"This item is currently sold out."
-);
-
+if (product.stock <= getCartQuantity(productId)) {
+showToast("This item is currently sold out.");
 return;
-
 }
-
-
 if (!product.squareLink) {
-
-showToast(
-"Square checkout link unavailable."
-);
-
+showToast("Square checkout link unavailable.");
 return;
-
 }
-
-
-window.location.href =
-product.squareLink;
-
+window.location.href = product.squareLink;
 }
-
-
-/* =====================================
-SHOW / HIDE CART
-===================================== */
 
 function toggleCart() {
-
-const section =
-document.getElementById(
-"cart-section"
-);
-
-
-if (
-section.style.display === "block"
-) {
-
-section.style.display =
-"none";
-
+const section = document.getElementById("cart-section");
+const isOpen = section.style.display === "block";
+section.style.display = isOpen ? "none" : "block";
+if (!isOpen) section.scrollIntoView({ behavior: "smooth" });
 }
-
-else {
-
-section.style.display =
-"block";
-
-section.scrollIntoView({
-behavior: "smooth"
-});
-
-}
-
-}
-
-
-/* =====================================
-CHECKOUT
-===================================== */
 
 function checkout() {
-
 if (cart.length === 0) {
-
-showToast(
-"Your cart is empty!"
-);
-
+showToast("Your cart is empty!");
 return;
-
 }
-
-
 if (cart.length > 1) {
-
-alert(
-"Your Square links are currently set up for individual products. " +
-"Please check out one product at a time."
-);
-
+alert("Your Square links are set up for individual products. Please check out one product at a time using the BUY NOW WITH SQUARE button.");
 return;
-
 }
-
-
-const product =
-products.find(
-p => p.id === cart[0].id
-);
-
-
-if (
-!product ||
-!product.squareLink
-) {
-
-showToast(
-"Square checkout link unavailable."
-);
-
+const product = products.find(p => p.id === cart[0].id);
+if (!product || !product.squareLink) {
+showToast("Square checkout link unavailable.");
 return;
-
 }
-
-
-window.location.href =
-product.squareLink;
-
+window.location.href = product.squareLink;
 }
-
-
-/* =====================================
-START
-===================================== */
 
 updateAllStockDisplays();
-
 updateCart();
-
 </script>
-
 </body>
 </html>
