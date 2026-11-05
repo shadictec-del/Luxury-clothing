@@ -36,11 +36,7 @@ header { background: #080808; color: white; padding: 20px 6%; display: flex; jus
 .product:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
 .product-badge { position: absolute; top: 12px; left: 12px; background: #111; color: white; padding: 6px 9px; font-size: 11px; font-weight: bold; border-radius: 3px; z-index: 5; }
 .product-image { width: 100%; aspect-ratio: 1 / 1; background: #eee; overflow: hidden; }
-.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.3s; }
-.product:hover .product-image img { transform: scale(1.02); }
-.image-buttons { display: flex; gap: 5px; padding: 12px 12px 0; }
-.image-buttons button { flex: 1; padding: 9px 3px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 12px; border-radius: 3px; }
-.image-buttons button.active { background: #111; color: white; border-color: #111; }
+.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .product-info { padding: 15px; }
 .product-info h3 { font-size: 17px; margin-bottom: 8px; }
 .product-details { color: #666; font-size: 13px; margin-bottom: 10px; line-height: 1.5; }
@@ -49,6 +45,8 @@ header { background: #080808; color: white; padding: 20px 6%; display: flex; jus
 .stock.available { color: #222; }
 .stock.low { color: #b36b00; }
 .stock.sold-out { color: #c00000; }
+.size-label { display: block; font-size: 13px; font-weight: bold; margin: 12px 0 6px; }
+.size-select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 4px; background: white; font-size: 14px; }
 .add-button, .square-button { width: 100%; padding: 13px; border: none; cursor: pointer; font-weight: bold; border-radius: 3px; margin-top: 8px; }
 .add-button { background: #111; color: white; }
 .add-button:hover { background: #333; }
@@ -99,8 +97,6 @@ header { padding: 18px 5%; }
 .product-info { padding: 10px; }
 .product-info h3 { font-size: 14px; }
 .price { font-size: 18px; }
-.image-buttons { padding: 8px 6px 0; gap: 3px; }
-.image-buttons button { font-size: 11px; padding: 8px 2px; }
 .cart-item { flex-wrap: wrap; }
 .quantity-controls { order: 2; }
 .remove-button { order: 3; }
@@ -137,7 +133,7 @@ header { padding: 18px 5%; }
 <div id="cart-items"></div>
 <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
 <button class="checkout-button" onclick="checkout()">Continue to Square Checkout</button>
-<p class="cart-note">Square checkout links are set up individually. Multiple products in your cart must be checked out one product at a time.</p>
+<p class="cart-note">Square checkout links are set up individually. Multiple products in your cart must be checked out one product at a time. If Square asks for a size, choose the same size selected on this website.</p>
 </section>
 
 <section class="trust-section">
@@ -169,115 +165,102 @@ header { padding: 18px 5%; }
 const products = [
 {
 id: 1,
-name: "Supreme Gray Camo Beanie",
-price: 35,
-stock: 0,
-badge: "SOLD OUT",
-squareLink: "https://square.link/u/Afvnq1eh",
-images: [
-"camo%20supreme%20front.jpeg",
-"camo%20supreme%20back.jpeg",
-"camo%20supreme%20tag.jpeg"
-]
+name: "Supreme Black Beanie",
+price: 50,
+stock: null,
+squareLink: "https://square.link/u/Jt2wcyb5",
+images: ["black%20suprem%20front.jpeg"]
 },
 {
 id: 2,
-name: "Supreme White Beanie",
-price: 35,
-stock: 0,
-badge: "SOLD OUT",
-squareLink: "https://square.link/u/aULKewWl",
+name: "Chanel Beanies",
+price: 50,
+stock: 2,
+squareLink: "https://square.link/u/OGm0l2JN",
 images: [
-"white%20supreme%20front.jpeg",
-"white%20supreme%20back.jpeg",
-"white%20supreme%20tag.jpeg"
-]
+"chanel%20beanie%20white%20and%20black.jpeg",
+"chanel%20beanie.jpeg"
+],
+photoChoice: true,
+details: "Choose your preferred style • 1 of each style available"
 },
 {
 id: 3,
-name: "Supreme Black Beanie",
-price: 35,
-stock: 0,
-badge: "OUT OF STOCK",
-squareLink: "https://square.link/u/Jt2wcyb5",
-images: [
-"black%20suprem%20front.jpeg",
-"black%20supreme%20back.jpeg",
-"black%20supreme%20tag.jpeg"
-]
+name: "Grey Supreme Set",
+price: 150,
+stock: 3,
+sizes: ["Small", "Medium", "Large"],
+sizeStock: { "Small": 1, "Medium": 1, "Large": 1 },
+squareLink: "https://square.link/u/gNxjKmR4",
+images: ["grey%20suprem%20set.jpeg"],
+details: "Choose your size"
 },
 {
 id: 4,
-name: "Chanel Black & White Beanie",
-price: 50,
-stock: 0,
-badge: "SOLD OUT",
-squareLink: "https://square.link/u/OGm0l2JN",
-images: [
-"chanel%20fro%202.jpeg",
-"chanel%20back-2.jpeg",
-"chanel%20tag.jpeg"
-]
+name: "Lululemon Define Jacket & High-Rise Biker Short",
+price: 120,
+stock: 1,
+sizes: ["6"],
+sizeStock: { "6": 1 },
+squareLink: "https://square.link/u/UgSKvVG2",
+images: ["lulu%20lemon%20blueset.jpeg"],
+details: "Blue set • Size 6 only"
 },
 {
 id: 5,
-name: "Lululemon Black Set",
-price: 115,
-stock: 0,
-badge: "SOLD OUT",
-details: "Size 6 (Small) • Jacket + Shorts",
+name: "Lululemon Define Jacket & Leggings Set",
+price: 120,
+stock: 7,
+sizes: ["4", "6", "8"],
+sizeStock: null,
 squareLink: "https://square.link/u/JuVMVZzF",
-images: ["lulu%20lemon%20set.jpeg"]
+images: ["black%20lulu%20set.jpeg"],
+details: "Black set • 7 total available • Choose size"
 },
 {
 id: 6,
-name: "Lululemon Light Blue Set",
-price: 115,
+name: "Supreme x Umbro Black Set",
+price: 150,
 stock: 1,
-badge: "NEW",
-details: "Size 6 (Small) • Jacket + Shorts",
-squareLink: "https://square.link/u/UgSKvVG2",
-images: ["lulu%20lemon%20blueset.jpeg"]
+sizes: ["Large"],
+sizeStock: { "Large": 1 },
+squareLink: "https://square.link/u/FVYDrn0N",
+images: ["supreme%20x%20umbro%20black%20.jpeg"],
+details: "Black set • Size Large"
 },
 {
 id: 7,
-name: "Supreme Black Set",
-price: 120,
-stock: 0,
-badge: "SOLD OUT",
-details: "Size XL",
-squareLink: "https://square.link/u/gNxjKmR4",
-images: ["Supreme%20black%20set.png"]
+name: "White and Pink Supreme Beanie",
+price: 50,
+stock: null,
+squareLink: "https://square.link/u/Afvnq1eh",
+images: ["white%20and%20pink%20suprem%20beanie.jpeg"]
 },
 {
 id: 8,
-name: "Black Chrome Hearts Socks",
-price: 25,
-stock: 2,
-badge: "LIMITED",
-details: "$25 per pair",
-squareLink: "https://square.link/u/5KX6Vry8",
-images: ["black%20chrome%20heart%20sock.png"]
+name: "White Supreme Beanie",
+price: 50,
+stock: null,
+squareLink: "https://square.link/u/aULKewWl",
+images: ["white%20supreme%20beanie.jpeg"]
 },
 {
 id: 9,
-name: "White Chrome Hearts Socks",
+name: "Black Chrome Hearts Socks",
 price: 25,
 stock: 2,
-badge: "LIMITED",
-details: "$25 per pair",
-squareLink: "https://square.link/u/M9dQy9zj",
-images: ["white%20chrome%20heart%20socks.png"]
+squareLink: "https://square.link/u/5KX6Vry8",
+images: ["black%20chrome%20heart%20sock.png"],
+details: "$25 per pair"
 },
 {
 id: 10,
-name: "Supreme x Umbro Navy Blue Set",
-price: 150,
-stock: 0,
-badge: "SOLD OUT",
-details: "Size Large",
-squareLink: "https://square.link/u/FVYDrn0N",
-images: ["supreme%20x%20umbro%20navy%20blue%20set.png"]
+name: "White Chrome Hearts Socks",
+price: 25,
+stock: 2,
+squareLink: "https://square.link/u/M9dQy9zj",
+images: ["white%20chrome%20heart%20socks.png"],
+details: "$25 per pair"
 }
 ];
 
@@ -286,10 +269,14 @@ try {
 const savedCart = JSON.parse(localStorage.getItem("revantaCart") || "[]");
 if (Array.isArray(savedCart)) {
 cart = savedCart.filter(item =>
-products.some(product => product.id === item.id && product.stock > 0) &&
+products.some(product => product.id === item.id) &&
 Number.isInteger(item.quantity) &&
 item.quantity > 0
-);
+).map(item => ({
+...item,
+size: item.size || "",
+photoIndex: Number.isInteger(item.photoIndex) ? item.photoIndex : 0
+}));
 }
 } catch (error) {
 cart = [];
@@ -299,9 +286,29 @@ function saveCart() {
 localStorage.setItem("revantaCart", JSON.stringify(cart));
 }
 
-function getCartQuantity(productId) {
-const item = cart.find(item => item.id === productId);
-return item ? item.quantity : 0;
+function productCartKey(productId, size = "", photoIndex = 0) {
+return `${productId}-${size}-${photoIndex}`;
+}
+
+function getCartQuantity(productId, size = "") {
+return cart
+.filter(item => item.id === productId && (!size || item.size === size))
+.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+function getSelectedSize(productId) {
+const select = document.getElementById(`size-${productId}`);
+return select ? select.value : "";
+}
+
+function getSelectedPhoto(productId) {
+const select = document.getElementById(`photo-${productId}`);
+return select ? Number(select.value) : 0;
+}
+
+function getProductStock(product, size = "") {
+if (product.sizeStock && size) return product.sizeStock[size] ?? 0;
+return product.stock;
 }
 
 const productsContainer = document.getElementById("products");
@@ -309,19 +316,28 @@ const productsContainer = document.getElementById("products");
 products.forEach(product => {
 const card = document.createElement("div");
 card.className = "product";
-const badgeHTML = product.badge ? `<div class="product-badge">${product.badge}</div>` : "";
 
-let imageButtonsHTML = "";
-if (product.images.length > 1) {
-const buttonNames = ["Front", "Back", "Tag"];
-imageButtonsHTML = `
-<div class="image-buttons">
-${product.images.map((image, index) => `
-<button type="button" class="${index === 0 ? "active" : ""}" onclick="changeImage(${product.id}, ${index}, this)">
-${buttonNames[index] || "Photo " + (index + 1)}
-</button>
-`).join("")}
-</div>`;
+const badgeHTML = product.stock === 0
+? `<div class="product-badge">SOLD OUT</div>`
+: "";
+
+let sizeHTML = "";
+if (product.sizes) {
+sizeHTML = `
+<label class="size-label" for="size-${product.id}">Select size</label>
+<select class="size-select" id="size-${product.id}">
+${product.sizes.map(size => `<option value="${size}">Size ${size}</option>`).join("")}
+</select>`;
+}
+
+let photoHTML = "";
+if (product.photoChoice) {
+photoHTML = `
+<label class="size-label" for="photo-${product.id}">Choose beanie style</label>
+<select class="size-select" id="photo-${product.id}" onchange="changePhoto(${product.id})">
+<option value="0">Style 1</option>
+<option value="1">Style 2</option>
+</select>`;
 }
 
 card.innerHTML = `
@@ -329,11 +345,12 @@ ${badgeHTML}
 <div class="product-image">
 <img id="image-${product.id}" src="${product.images[0]}" alt="${product.name}" onerror="imageError(this)">
 </div>
-${imageButtonsHTML}
+${photoHTML}
 <div class="product-info">
 <h3>${product.name}</h3>
 ${product.details ? `<div class="product-details">${product.details}</div>` : ""}
 <div class="price">$${product.price.toFixed(2)}</div>
+${sizeHTML}
 <div class="stock" id="stock-${product.id}"></div>
 <button class="add-button" id="add-${product.id}" onclick="addToCart(${product.id})">ADD TO CART</button>
 <button class="square-button" id="buy-${product.id}" onclick="buyNow(${product.id})">BUY NOW WITH SQUARE</button>
@@ -348,43 +365,57 @@ image.style.objectFit = "contain";
 image.removeAttribute("src");
 }
 
-function changeImage(productId, imageIndex, button) {
+function changePhoto(productId) {
 const product = products.find(p => p.id === productId);
 if (!product) return;
+const index = getSelectedPhoto(productId);
 const image = document.getElementById(`image-${productId}`);
 image.onerror = function() { imageError(this); };
-image.src = product.images[imageIndex];
-button.parentElement.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
-button.classList.add("active");
+image.src = product.images[index];
 }
 
 function updateStockDisplay(productId) {
 const product = products.find(p => p.id === productId);
 if (!product) return;
-const quantityInCart = getCartQuantity(productId);
-const remaining = Math.max(0, product.stock - quantityInCart);
+
+const size = getSelectedSize(productId);
+const stock = getProductStock(product, size);
+const quantityInCart = getCartQuantity(productId, size);
+const remaining = stock === null ? null : Math.max(0, stock - quantityInCart);
+
 const stockElement = document.getElementById(`stock-${productId}`);
 const addButton = document.getElementById(`add-${productId}`);
 const buyButton = document.getElementById(`buy-${productId}`);
 
 stockElement.classList.remove("available", "low", "sold-out");
-if (remaining <= 0) {
+
+if (remaining === 0) {
 stockElement.textContent = "SOLD OUT";
 stockElement.classList.add("sold-out");
 addButton.disabled = true;
 addButton.textContent = "SOLD OUT";
+buyButton.disabled = true;
 } else {
-stockElement.textContent = `${remaining} left`;
+stockElement.textContent = remaining === null
+? "Check availability at checkout"
+: `${remaining} left`;
 stockElement.classList.add(remaining === 1 ? "low" : "available");
 addButton.disabled = false;
 addButton.textContent = "ADD TO CART";
+buyButton.disabled = false;
 }
-buyButton.disabled = remaining <= 0;
 }
 
 function updateAllStockDisplays() {
 products.forEach(product => updateStockDisplay(product.id));
 }
+
+document.addEventListener("change", function(event) {
+if (event.target.classList.contains("size-select")) {
+const productId = Number(event.target.id.replace("size-", ""));
+updateStockDisplay(productId);
+}
+});
 
 let toastTimeout;
 function showToast(message) {
@@ -398,42 +429,71 @@ toastTimeout = setTimeout(() => toast.classList.remove("show"), 2000);
 function addToCart(productId) {
 const product = products.find(p => p.id === productId);
 if (!product) return;
-if (getCartQuantity(productId) >= product.stock) {
-showToast(`Only ${product.stock} available.`);
+
+const size = getSelectedSize(productId);
+const photoIndex = getSelectedPhoto(productId);
+const stock = getProductStock(product, size);
+const quantityInCart = getCartQuantity(productId, size);
+
+if (stock !== null && quantityInCart >= stock) {
+showToast("No more available in this size.");
 return;
 }
-const existingItem = cart.find(item => item.id === productId);
+
+const key = productCartKey(productId, size, photoIndex);
+const existingItem = cart.find(item =>
+productCartKey(item.id, item.size || "", item.photoIndex || 0) === key
+);
+
 if (existingItem) {
 existingItem.quantity++;
 } else {
-cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+cart.push({
+id: product.id,
+name: product.name,
+price: product.price,
+quantity: 1,
+size,
+photoIndex
+});
 }
+
 saveCart();
 updateCart();
 updateAllStockDisplays();
 showToast(product.name + " added to cart!");
 }
 
-function removeFromCart(productId) {
-cart = cart.filter(item => item.id !== productId);
+function removeFromCart(productId, size, photoIndex) {
+cart = cart.filter(item =>
+productCartKey(item.id, item.size || "", item.photoIndex || 0) !==
+productCartKey(productId, size || "", photoIndex || 0)
+);
 saveCart();
 updateCart();
 updateAllStockDisplays();
 }
 
-function changeQuantity(productId, change) {
+function changeQuantity(productId, size, photoIndex, change) {
 const product = products.find(p => p.id === productId);
-const item = cart.find(item => item.id === productId);
+const item = cart.find(item =>
+productCartKey(item.id, item.size || "", item.photoIndex || 0) ===
+productCartKey(productId, size || "", photoIndex || 0)
+);
 if (!product || !item) return;
+
 const newQuantity = item.quantity + change;
 if (newQuantity <= 0) {
-removeFromCart(productId);
+removeFromCart(productId, size, photoIndex);
 return;
 }
-if (newQuantity > product.stock) {
-showToast(`Only ${product.stock} available.`);
+
+const stock = getProductStock(product, size || "");
+if (stock !== null && newQuantity > stock) {
+showToast("No more available in this size.");
 return;
 }
+
 item.quantity = newQuantity;
 saveCart();
 updateCart();
@@ -447,42 +507,60 @@ cart.forEach(item => {
 totalItems += item.quantity;
 totalPrice += item.price * item.quantity;
 });
+
 document.getElementById("cart-count").textContent = totalItems;
 const cartItems = document.getElementById("cart-items");
 cartItems.innerHTML = "";
+
 if (cart.length === 0) {
 cartItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
 }
+
 cart.forEach(item => {
 const row = document.createElement("div");
 row.className = "cart-item";
+const sizeText = item.size ? ` • Size ${item.size}` : "";
+const photoText = item.id === 2 ? ` • Style ${Number(item.photoIndex || 0) + 1}` : "";
+
 row.innerHTML = `
 <div class="cart-item-info">
-<div class="cart-item-name">${item.name}</div>
+<div class="cart-item-name">${item.name}${sizeText}${photoText}</div>
 <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
 </div>
 <div class="quantity-controls">
-<button class="quantity-button" onclick="changeQuantity(${item.id}, -1)">−</button>
+<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)}, -1)'>−</button>
 <span class="quantity">${item.quantity}</span>
-<button class="quantity-button" onclick="changeQuantity(${item.id}, 1)">+</button>
+<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)}, 1)'>+</button>
 </div>
-<button class="remove-button" onclick="removeFromCart(${item.id})">Remove</button>`;
+<button class="remove-button" onclick='removeFromCart(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)})'>Remove</button>`;
 cartItems.appendChild(row);
 });
+
 document.getElementById("cart-total").textContent = totalPrice.toFixed(2);
 }
 
 function buyNow(productId) {
 const product = products.find(p => p.id === productId);
-if (!product) return;
-if (product.stock <= getCartQuantity(productId)) {
-showToast("This item is currently sold out.");
-return;
-}
-if (!product.squareLink) {
+if (!product || !product.squareLink) {
 showToast("Square checkout link unavailable.");
 return;
 }
+
+const size = getSelectedSize(productId);
+const stock = getProductStock(product, size);
+
+if (stock === 0) {
+showToast("This size is currently sold out.");
+return;
+}
+
+if (product.sizes) {
+alert(`You selected size ${size}. When Square checkout opens, select size ${size} there too if Square asks you to choose a variation.`);
+}
+if (product.photoChoice) {
+showToast("Your selected beanie style is shown in your cart. Confirm the same style when ordering.");
+}
+
 window.location.href = product.squareLink;
 }
 
@@ -498,14 +576,20 @@ if (cart.length === 0) {
 showToast("Your cart is empty!");
 return;
 }
-if (cart.length > 1) {
+if (cart.length > 1 || cart[0].quantity > 1) {
 alert("Your Square links are set up for individual products. Please check out one product at a time using the BUY NOW WITH SQUARE button.");
 return;
 }
-const product = products.find(p => p.id === cart[0].id);
+
+const item = cart[0];
+const product = products.find(p => p.id === item.id);
 if (!product || !product.squareLink) {
 showToast("Square checkout link unavailable.");
 return;
+}
+
+if (item.size) {
+alert(`Your cart has size ${item.size}. If Square asks for a size, choose size ${item.size} again.`);
 }
 window.location.href = product.squareLink;
 }
