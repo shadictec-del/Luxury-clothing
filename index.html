@@ -31,6 +31,21 @@ header { background: #080808; color: white; padding: 20px 6%; display: flex; jus
 .section-title { text-align: center; padding: 45px 15px 15px; }
 .section-title h2 { font-size: 30px; margin-bottom: 10px; }
 .section-title p { color: #666; }
+
+.availability-warning {
+max-width: 900px;
+margin: 15px auto 5px;
+padding: 12px 18px;
+background: #fff3cd;
+border: 1px solid #ead28a;
+border-radius: 5px;
+color: #705400;
+text-align: center;
+font-size: 13px;
+font-weight: bold;
+line-height: 1.5;
+}
+
 .products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 30px 5% 60px; max-width: 1500px; margin: auto; }
 .product { background: white; border-radius: 7px; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,0.07); padding-bottom: 20px; position: relative; transition: 0.2s; }
 .product:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
@@ -84,9 +99,11 @@ footer { background: #080808; color: white; text-align: center; padding: 35px 15
 footer p { color: #aaa; margin-top: 10px; font-size: 14px; }
 .toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #111; color: white; padding: 13px 20px; border-radius: 5px; font-weight: bold; font-size: 14px; opacity: 0; transition: 0.3s; z-index: 2000; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
 @media (max-width: 1000px) {
 .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .trust-grid { grid-template-columns: 1fr; max-width: 500px; }
+.availability-warning { margin-left: 12px; margin-right: 12px; }
 }
 @media (max-width: 600px) {
 header { padding: 18px 5%; }
@@ -126,6 +143,11 @@ header { padding: 18px 5%; }
 <h2>OUR COLLECTION</h2>
 <p>Check out what's currently available.</p>
 </section>
+
+<div class="availability-warning">
+⚠️ Website stock may differ from Square checkout. Orders exceeding available stock may be delayed or canceled.
+</div>
+
 <div class="products" id="products"></div>
 
 <section class="cart-section" id="cart-section">
@@ -167,7 +189,7 @@ const products = [
 id: 1,
 name: "Supreme Black Beanie",
 price: 50,
-stock: null,
+stock: 2,
 squareLink: "https://square.link/u/Jt2wcyb5",
 images: ["black%20suprem%20front.jpeg"]
 },
