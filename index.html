@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Revanta Markets | Streetwear & More</title>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZCW2QKRNFB"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -11,23 +12,79 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'G-ZCW2QKRNFB');
 </script>
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #111; }
-header { background: #080808; color: white; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+
+header {
+background: #080808;
+color: white;
+padding: 20px 6%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+
 .logo { font-size: 25px; font-weight: 900; letter-spacing: 2px; }
 .logo span { color: #777; }
 .header-right { display: flex; align-items: center; gap: 10px; }
-.social-link { color: white; text-decoration: none; font-size: 12px; font-weight: bold; border: 1px solid #333; padding: 9px 11px; border-radius: 4px; }
+
+.social-link {
+color: white;
+text-decoration: none;
+font-size: 12px;
+font-weight: bold;
+border: 1px solid #333;
+padding: 9px 11px;
+border-radius: 4px;
+}
+
 .social-link:hover { background: white; color: black; }
-.cart-button { background: white; color: black; padding: 12px 18px; border-radius: 4px; cursor: pointer; border: none; font-weight: bold; }
+
+.cart-button {
+background: white;
+color: black;
+padding: 12px 18px;
+border-radius: 4px;
+cursor: pointer;
+border: none;
+font-weight: bold;
+}
+
 .cart-button:hover { background: #ddd; }
-.hero { background: #111; color: white; text-align: center; padding: 80px 20px; }
-.hero h1 { font-size: clamp(35px, 6vw, 58px); margin-bottom: 15px; letter-spacing: 2px; }
+
+.hero {
+background: #111;
+color: white;
+text-align: center;
+padding: 80px 20px;
+}
+
+.hero h1 {
+font-size: clamp(35px, 6vw, 58px);
+margin-bottom: 15px;
+letter-spacing: 2px;
+}
+
 .hero p { color: #ccc; font-size: 17px; margin-bottom: 25px; }
-.hero a { display: inline-block; background: white; color: black; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 3px; }
+
+.hero a {
+display: inline-block;
+background: white;
+color: black;
+padding: 14px 28px;
+text-decoration: none;
+font-weight: bold;
+border-radius: 3px;
+}
+
 .hero a:hover { background: #ddd; }
+
 .section-title { text-align: center; padding: 45px 15px 15px; }
 .section-title h2 { font-size: 30px; margin-bottom: 10px; }
 .section-title p { color: #666; }
@@ -46,65 +103,275 @@ font-weight: bold;
 line-height: 1.5;
 }
 
-.products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 30px 5% 60px; max-width: 1500px; margin: auto; }
-.product { background: white; border-radius: 7px; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,0.07); padding-bottom: 20px; position: relative; transition: 0.2s; }
-.product:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
-.product-badge { position: absolute; top: 12px; left: 12px; background: #111; color: white; padding: 6px 9px; font-size: 11px; font-weight: bold; border-radius: 3px; z-index: 5; }
-.product-image { width: 100%; aspect-ratio: 1 / 1; background: #eee; overflow: hidden; }
-.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.products {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 22px;
+padding: 30px 5% 60px;
+max-width: 1500px;
+margin: auto;
+}
+
+.product {
+background: white;
+border-radius: 7px;
+overflow: hidden;
+box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+padding-bottom: 20px;
+position: relative;
+transition: 0.2s;
+}
+
+.product:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.product-badge {
+position: absolute;
+top: 12px;
+left: 12px;
+background: #111;
+color: white;
+padding: 6px 9px;
+font-size: 11px;
+font-weight: bold;
+border-radius: 3px;
+z-index: 5;
+}
+
+.product-image {
+width: 100%;
+aspect-ratio: 1 / 1;
+background: #eee;
+overflow: hidden;
+}
+
+.product-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
 .product-info { padding: 15px; }
 .product-info h3 { font-size: 17px; margin-bottom: 8px; }
-.product-details { color: #666; font-size: 13px; margin-bottom: 10px; line-height: 1.5; }
+
+.product-details {
+color: #666;
+font-size: 13px;
+margin-bottom: 10px;
+line-height: 1.5;
+}
+
 .price { font-size: 21px; font-weight: bold; margin-bottom: 10px; }
 .stock { font-size: 14px; font-weight: bold; margin-bottom: 12px; }
 .stock.available { color: #222; }
 .stock.low { color: #b36b00; }
 .stock.sold-out { color: #c00000; }
-.size-label { display: block; font-size: 13px; font-weight: bold; margin: 12px 0 6px; }
-.size-select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 4px; background: white; font-size: 14px; }
-.add-button, .square-button { width: 100%; padding: 13px; border: none; cursor: pointer; font-weight: bold; border-radius: 3px; margin-top: 8px; }
+
+.size-label {
+display: block;
+font-size: 13px;
+font-weight: bold;
+margin: 12px 0 6px;
+}
+
+.size-select {
+width: 100%;
+padding: 11px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background: white;
+font-size: 14px;
+}
+
+.add-button, .square-button {
+width: 100%;
+padding: 13px;
+border: none;
+cursor: pointer;
+font-weight: bold;
+border-radius: 3px;
+margin-top: 8px;
+}
+
 .add-button { background: #111; color: white; }
 .add-button:hover { background: #333; }
-.add-button:disabled, .square-button:disabled { background: #aaa; cursor: not-allowed; }
+
+.add-button:disabled, .square-button:disabled {
+background: #aaa;
+cursor: not-allowed;
+}
+
 .square-button { background: #006aff; color: white; }
 .square-button:hover { background: #0053cc; }
-.cart-section { background: white; max-width: 900px; margin: 0 auto 60px; padding: 25px; border-radius: 6px; display: none; }
+
+.cart-section {
+background: white;
+max-width: 900px;
+margin: 0 auto 60px;
+padding: 25px;
+border-radius: 6px;
+display: none;
+}
+
 .cart-section h2 { margin-bottom: 20px; }
-.cart-item { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid #ddd; }
+
+.cart-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 15px;
+padding: 15px 0;
+border-bottom: 1px solid #ddd;
+}
+
 .cart-item-info { flex: 1; }
 .cart-item-name { font-weight: bold; margin-bottom: 5px; }
 .cart-item-price { color: #555; }
-.quantity-controls { display: flex; align-items: center; gap: 8px; }
-.quantity-button { width: 32px; height: 32px; border: none; background: #111; color: white; cursor: pointer; border-radius: 3px; font-weight: bold; }
+
+.quantity-controls {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.quantity-button {
+width: 32px;
+height: 32px;
+border: none;
+background: #111;
+color: white;
+cursor: pointer;
+border-radius: 3px;
+font-weight: bold;
+}
+
 .quantity { min-width: 25px; text-align: center; font-weight: bold; }
-.remove-button { background: #eee; border: none; padding: 8px 12px; cursor: pointer; border-radius: 3px; }
+
+.remove-button {
+background: #eee;
+border: none;
+padding: 8px 12px;
+cursor: pointer;
+border-radius: 3px;
+}
+
 .cart-total { font-size: 22px; font-weight: bold; margin: 20px 0; }
-.checkout-button { display: block; width: 100%; background: #006aff; color: white; border: none; padding: 15px; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 3px; }
+
+.checkout-button {
+display: block;
+width: 100%;
+background: #006aff;
+color: white;
+border: none;
+padding: 15px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+border-radius: 3px;
+}
+
 .checkout-button:hover { background: #0053cc; }
 .empty-cart { color: #777; margin-bottom: 10px; }
-.cart-note { color: #666; font-size: 13px; margin-top: 12px; line-height: 1.5; }
-.trust-section { background: white; padding: 50px 20px; text-align: center; }
+
+.cart-note {
+color: #666;
+font-size: 13px;
+margin-top: 12px;
+line-height: 1.5;
+}
+
+.trust-section {
+background: white;
+padding: 50px 20px;
+text-align: center;
+}
+
 .trust-section h2 { margin-bottom: 25px; }
-.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 950px; margin: auto; }
-.trust-item { padding: 22px; border: 1px solid #eee; border-radius: 6px; }
+
+.trust-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+max-width: 950px;
+margin: auto;
+}
+
+.trust-item {
+padding: 22px;
+border: 1px solid #eee;
+border-radius: 6px;
+}
+
 .trust-item strong { display: block; margin-bottom: 8px; }
-.trust-item p { color: #666; font-size: 14px; line-height: 1.5; }
+
+.trust-item p {
+color: #666;
+font-size: 14px;
+line-height: 1.5;
+}
+
 .social-section { text-align: center; padding: 50px 20px; }
 .social-section h2 { margin-bottom: 10px; }
 .social-section p { color: #666; margin-bottom: 20px; }
-.social-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.social-button { background: #111; color: white; text-decoration: none; padding: 12px 20px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+
+.social-buttons {
+display: flex;
+justify-content: center;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+.social-button {
+background: #111;
+color: white;
+text-decoration: none;
+padding: 12px 20px;
+border-radius: 4px;
+font-weight: bold;
+font-size: 13px;
+}
+
 .social-button:hover { background: #333; }
-footer { background: #080808; color: white; text-align: center; padding: 35px 15px; }
+
+footer {
+background: #080808;
+color: white;
+text-align: center;
+padding: 35px 15px;
+}
+
 footer p { color: #aaa; margin-top: 10px; font-size: 14px; }
-.toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #111; color: white; padding: 13px 20px; border-radius: 5px; font-weight: bold; font-size: 14px; opacity: 0; transition: 0.3s; z-index: 2000; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.toast {
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: #111;
+color: white;
+padding: 13px 20px;
+border-radius: 5px;
+font-weight: bold;
+font-size: 14px;
+opacity: 0;
+transition: 0.3s;
+z-index: 2000;
+}
+
+.toast.show {
+opacity: 1;
+transform: translateX(-50%) translateY(0);
+}
 
 @media (max-width: 1000px) {
 .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .trust-grid { grid-template-columns: 1fr; max-width: 500px; }
 .availability-warning { margin-left: 12px; margin-right: 12px; }
 }
+
 @media (max-width: 600px) {
 header { padding: 18px 5%; }
 .logo { font-size: 20px; }
@@ -118,14 +385,18 @@ header { padding: 18px 5%; }
 .quantity-controls { order: 2; }
 .remove-button { order: 3; }
 }
+
 @media (max-width: 360px) {
 .products { grid-template-columns: 1fr; }
 }
 </style>
 </head>
+
 <body>
+
 <header>
 <div class="logo">REVANTA <span>MARKETS</span></div>
+
 <div class="header-right">
 <a class="social-link" href="https://instagram.com/revanta_markets" target="_blank" rel="noopener noreferrer">Instagram</a>
 <a class="social-link" href="https://www.tiktok.com/@revanta_markets" target="_blank" rel="noopener noreferrer">TikTok</a>
@@ -161,9 +432,18 @@ header { padding: 18px 5%; }
 <section class="trust-section">
 <h2>WHY REVANTA MARKETS?</h2>
 <div class="trust-grid">
-<div class="trust-item"><strong>🔥 GREAT FINDS</strong><p>New products will be added as the collection grows.</p></div>
-<div class="trust-item"><strong>💳 SECURE CHECKOUT</strong><p>Payments are handled through Square.</p></div>
-<div class="trust-item"><strong>📦 LIMITED STOCK</strong><p>Stock is limited while supplies last.</p></div>
+<div class="trust-item">
+<strong>🔥 GREAT FINDS</strong>
+<p>New products will be added as the collection grows.</p>
+</div>
+<div class="trust-item">
+<strong>💳 SECURE CHECKOUT</strong>
+<p>Payments are handled through Square.</p>
+</div>
+<div class="trust-item">
+<strong>📦 LIMITED STOCK</strong>
+<p>Stock is limited while supplies last.</p>
+</div>
 </div>
 </section>
 
@@ -181,90 +461,101 @@ header { padding: 18px 5%; }
 <p>Streetwear • Accessories • More</p>
 <p>© 2026 Revanta Markets. All rights reserved.</p>
 </footer>
+
 <div class="toast" id="toast">Added to cart!</div>
 
 <script>
+
+// UPDATED INVENTORY
+
 const products = [
 {
 id: 1,
 name: "Supreme Beanie",
 price: 50,
-stock: 1,
+stock: 0,
 squareLink: "https://square.link/u/Jt2wcyb5",
-images: ["black%20suprem%20front.jpeg"]
+images: ["black%20suprem%20front.jpeg"],
+details: "Sold out"
 },
 {
 id: 2,
-name: "Chanel Beanies",
+name: "Chanel Beanie",
 price: 50,
-stock: 2,
+stock: 1,
 squareLink: "https://square.link/u/OGm0l2JN",
-images: [
-"chanel%20beanie%20white%20and%20black.jpeg",
-"chanel%20beanie.jpeg"
-],
-photoChoice: true,
-details: "Choose your preferred style • 1 of each style available"
+images: ["chanel%20beanie%20white%20and%20black.jpeg"],
+details: "Style 1 only • 1 available"
 },
 {
 id: 3,
 name: "Grey Supreme Set",
 price: 150,
-stock: 2,
+stock: 0,
 sizes: ["Small", "Medium", "Large"],
-sizeStock: { "Small": 0, "Medium": 1, "Large": 1 },
+sizeStock: {
+"Small": 0,
+"Medium": 0,
+"Large": 0
+},
 squareLink: "https://square.link/u/gNxjKmR4",
 images: ["grey%20suprem%20set.jpeg"],
-details: "Small sold out • 1 Medium and 1 Large available"
+details: "Sold out"
 },
 {
 id: 4,
 name: "Lululemon Define Jacket & High-Rise Biker Short",
 price: 120,
-stock: 1,
+stock: 0,
 sizes: ["6"],
-sizeStock: { "6": 1 },
+sizeStock: { "6": 0 },
 squareLink: "https://square.link/u/UgSKvVG2",
 images: ["lulu%20lemon%20blueset.jpeg"],
-details: "Blue set • Size 6 only"
+details: "Blue set • Sold out"
 },
 {
 id: 5,
 name: "Lululemon Define Jacket & Leggings Set",
 price: 120,
-stock: 4,
-sizes: ["2", "4", "6", "8"],
-sizeStock: { "2": 1, "4": 1, "6": 1, "8": 1 },
+stock: 3,
+sizes: ["2", "4", "8"],
+sizeStock: {
+"2": 1,
+"4": 1,
+"8": 1
+},
 squareLink: "https://square.link/u/JuVMVZzF",
 images: ["black%20lulu%20set.jpeg"],
-details: "Black set • 1 each in sizes 2, 4, 6 and 8"
+details: "Black set • 1 each in sizes 2, 4 and 8"
 },
 {
 id: 6,
 name: "Supreme x Umbro Black Set",
 price: 150,
-stock: 1,
+stock: 0,
 sizes: ["Large"],
-sizeStock: { "Large": 1 },
+sizeStock: { "Large": 0 },
 squareLink: "https://square.link/u/FVYDrn0N",
 images: ["supreme%20x%20umbro%20black%20.jpeg"],
-details: "Black set • Size Large"
+details: "Sold out"
 },
 {
 id: 7,
 name: "White and Pink Supreme Beanie",
 price: 50,
-stock: 2,
+stock: 0,
 squareLink: "https://square.link/u/aULKewWl",
-images: ["white%20and%20pink%20suprem%20beanie.jpeg"]
+images: ["white%20and%20pink%20suprem%20beanie.jpeg"],
+details: "Sold out"
 },
 {
 id: 8,
 name: "White Supreme Beanie",
 price: 50,
-stock: 2,
+stock: 1,
 squareLink: "https://square.link/u/Afvnq1eh",
-images: ["white%20supreme%20beanie.jpeg"]
+images: ["white%20supreme%20beanie.jpeg"],
+details: "1 available"
 },
 {
 id: 9,
@@ -273,7 +564,7 @@ price: 25,
 stock: 2,
 squareLink: "https://square.link/u/5KX6Vry8",
 images: ["black%20chrome%20heart%20sock.png"],
-details: "$25 per pair"
+details: "$25 per pair • 2 available"
 },
 {
 id: 10,
@@ -282,13 +573,15 @@ price: 25,
 stock: 2,
 squareLink: "https://square.link/u/M9dQy9zj",
 images: ["white%20chrome%20heart%20socks.png"],
-details: "$25 per pair"
+details: "$25 per pair • 2 available"
 }
 ];
 
 let cart = [];
+
 try {
 const savedCart = JSON.parse(localStorage.getItem("revantaCart") || "[]");
+
 if (Array.isArray(savedCart)) {
 cart = savedCart.filter(item =>
 products.some(product => product.id === item.id) &&
@@ -344,6 +637,7 @@ const badgeHTML = product.stock === 0
 : "";
 
 let sizeHTML = "";
+
 if (product.sizes) {
 sizeHTML = `
 <label class="size-label" for="size-${product.id}">Select size</label>
@@ -352,22 +646,12 @@ ${product.sizes.map(size => `<option value="${size}">Size ${size}</option>`).joi
 </select>`;
 }
 
-let photoHTML = "";
-if (product.photoChoice) {
-photoHTML = `
-<label class="size-label" for="photo-${product.id}">Choose beanie style</label>
-<select class="size-select" id="photo-${product.id}" onchange="changePhoto(${product.id})">
-<option value="0">Style 1</option>
-<option value="1">Style 2</option>
-</select>`;
-}
-
 card.innerHTML = `
 ${badgeHTML}
 <div class="product-image">
 <img id="image-${product.id}" src="${product.images[0]}" alt="${product.name}" onerror="imageError(this)">
 </div>
-${photoHTML}
+
 <div class="product-info">
 <h3>${product.name}</h3>
 ${product.details ? `<div class="product-details">${product.details}</div>` : ""}
@@ -377,6 +661,7 @@ ${sizeHTML}
 <button class="add-button" id="add-${product.id}" onclick="addToCart(${product.id})">ADD TO CART</button>
 <button class="square-button" id="buy-${product.id}" onclick="buyNow(${product.id})">BUY NOW WITH SQUARE</button>
 </div>`;
+
 productsContainer.appendChild(card);
 });
 
@@ -387,15 +672,6 @@ image.style.objectFit = "contain";
 image.removeAttribute("src");
 }
 
-function changePhoto(productId) {
-const product = products.find(p => p.id === productId);
-if (!product) return;
-const index = getSelectedPhoto(productId);
-const image = document.getElementById(`image-${productId}`);
-image.onerror = function() { imageError(this); };
-image.src = product.images[index];
-}
-
 function updateStockDisplay(productId) {
 const product = products.find(p => p.id === productId);
 if (!product) return;
@@ -403,7 +679,7 @@ if (!product) return;
 const size = getSelectedSize(productId);
 const stock = getProductStock(product, size);
 const quantityInCart = getCartQuantity(productId, size);
-const remaining = stock === null ? null : Math.max(0, stock - quantityInCart);
+const remaining = Math.max(0, stock - quantityInCart);
 
 const stockElement = document.getElementById(`stock-${productId}`);
 const addButton = document.getElementById(`add-${productId}`);
@@ -418,9 +694,7 @@ addButton.disabled = true;
 addButton.textContent = "SOLD OUT";
 buyButton.disabled = true;
 } else {
-stockElement.textContent = remaining === null
-? "Check availability at checkout"
-: `${remaining} left`;
+stockElement.textContent = `${remaining} left`;
 stockElement.classList.add(remaining === 1 ? "low" : "available");
 addButton.disabled = false;
 addButton.textContent = "ADD TO CART";
@@ -440,6 +714,7 @@ updateStockDisplay(productId);
 });
 
 let toastTimeout;
+
 function showToast(message) {
 const toast = document.getElementById("toast");
 toast.textContent = message;
@@ -457,12 +732,13 @@ const photoIndex = getSelectedPhoto(productId);
 const stock = getProductStock(product, size);
 const quantityInCart = getCartQuantity(productId, size);
 
-if (stock !== null && quantityInCart >= stock) {
+if (stock === 0 || quantityInCart >= stock) {
 showToast("No more available in this size.");
 return;
 }
 
 const key = productCartKey(productId, size, photoIndex);
+
 const existingItem = cart.find(item =>
 productCartKey(item.id, item.size || "", item.photoIndex || 0) === key
 );
@@ -491,6 +767,7 @@ cart = cart.filter(item =>
 productCartKey(item.id, item.size || "", item.photoIndex || 0) !==
 productCartKey(productId, size || "", photoIndex || 0)
 );
+
 saveCart();
 updateCart();
 updateAllStockDisplays();
@@ -498,20 +775,24 @@ updateAllStockDisplays();
 
 function changeQuantity(productId, size, photoIndex, change) {
 const product = products.find(p => p.id === productId);
+
 const item = cart.find(item =>
 productCartKey(item.id, item.size || "", item.photoIndex || 0) ===
 productCartKey(productId, size || "", photoIndex || 0)
 );
+
 if (!product || !item) return;
 
 const newQuantity = item.quantity + change;
+
 if (newQuantity <= 0) {
 removeFromCart(productId, size, photoIndex);
 return;
 }
 
 const stock = getProductStock(product, size || "");
-if (stock !== null && newQuantity > stock) {
+
+if (stock === 0 || newQuantity > stock) {
 showToast("No more available in this size.");
 return;
 }
@@ -525,12 +806,14 @@ updateAllStockDisplays();
 function updateCart() {
 let totalItems = 0;
 let totalPrice = 0;
+
 cart.forEach(item => {
 totalItems += item.quantity;
 totalPrice += item.price * item.quantity;
 });
 
 document.getElementById("cart-count").textContent = totalItems;
+
 const cartItems = document.getElementById("cart-items");
 cartItems.innerHTML = "";
 
@@ -541,20 +824,24 @@ cartItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
 cart.forEach(item => {
 const row = document.createElement("div");
 row.className = "cart-item";
+
 const sizeText = item.size ? ` • Size ${item.size}` : "";
-const photoText = item.id === 2 ? ` • Style ${Number(item.photoIndex || 0) + 1}` : "";
 
 row.innerHTML = `
 <div class="cart-item-info">
-<div class="cart-item-name">${item.name}${sizeText}${photoText}</div>
+<div class="cart-item-name">${item.name}${sizeText}</div>
 <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
 </div>
+
 <div class="quantity-controls">
-<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)}, -1)'>−</button>
+<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, 0, -1)'>−</button>
 <span class="quantity">${item.quantity}</span>
-<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)}, 1)'>+</button>
+<button class="quantity-button" onclick='changeQuantity(${item.id}, ${JSON.stringify(item.size || "")}, 0, 1)'>+</button>
 </div>
-<button class="remove-button" onclick='removeFromCart(${item.id}, ${JSON.stringify(item.size || "")}, ${Number(item.photoIndex || 0)})'>Remove</button>`;
+
+<button class="remove-button" onclick='removeFromCart(${item.id}, ${JSON.stringify(item.size || "")}, 0)'>Remove</button>
+`;
+
 cartItems.appendChild(row);
 });
 
@@ -563,6 +850,7 @@ document.getElementById("cart-total").textContent = totalPrice.toFixed(2);
 
 function buyNow(productId) {
 const product = products.find(p => p.id === productId);
+
 if (!product || !product.squareLink) {
 showToast("Square checkout link unavailable.");
 return;
@@ -572,15 +860,12 @@ const size = getSelectedSize(productId);
 const stock = getProductStock(product, size);
 
 if (stock === 0) {
-showToast("This size is currently sold out.");
+showToast("This product or size is sold out.");
 return;
 }
 
 if (product.sizes) {
 alert(`You selected size ${size}. When Square checkout opens, select size ${size} there too if Square asks you to choose a variation.`);
-}
-if (product.photoChoice) {
-showToast("Your selected beanie style is shown in your cart. Confirm the same style when ordering.");
 }
 
 window.location.href = product.squareLink;
@@ -589,8 +874,12 @@ window.location.href = product.squareLink;
 function toggleCart() {
 const section = document.getElementById("cart-section");
 const isOpen = section.style.display === "block";
+
 section.style.display = isOpen ? "none" : "block";
-if (!isOpen) section.scrollIntoView({ behavior: "smooth" });
+
+if (!isOpen) {
+section.scrollIntoView({ behavior: "smooth" });
+}
 }
 
 function checkout() {
@@ -598,6 +887,7 @@ if (cart.length === 0) {
 showToast("Your cart is empty!");
 return;
 }
+
 if (cart.length > 1 || cart[0].quantity > 1) {
 alert("Your Square links are set up for individual products. Please check out one product at a time using the BUY NOW WITH SQUARE button.");
 return;
@@ -605,6 +895,7 @@ return;
 
 const item = cart[0];
 const product = products.find(p => p.id === item.id);
+
 if (!product || !product.squareLink) {
 showToast("Square checkout link unavailable.");
 return;
@@ -613,11 +904,13 @@ return;
 if (item.size) {
 alert(`Your cart has size ${item.size}. If Square asks for a size, choose size ${item.size} again.`);
 }
+
 window.location.href = product.squareLink;
 }
 
 updateAllStockDisplays();
 updateCart();
+
 </script>
 </body>
 </html>
